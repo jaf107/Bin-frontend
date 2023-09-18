@@ -10,6 +10,8 @@ function Header() {
   const dispatch = useDispatch();
   const alert = useAlert();
   const { error, isAuthenticated, user } = useSelector((state) => state.user);
+
+  // Check Authentication
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -27,9 +29,9 @@ function Header() {
   return (
     <div className="container header z-index-n1">
       <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="#">
+        <Link class="navbar-brand" to="/">
           <img src={require("../../assets/logo.png")} alt="logo" width={70} />
-        </a>
+        </Link>
         <button
           class="navbar-toggler"
           type="button"
@@ -46,16 +48,6 @@ function Header() {
           class="collapse navbar-collapse justify-content-between"
           id="navbarSupportedContent"
         >
-          {/* <form class="form-inline my-2 my-lg-0">
-            <div class="input-group input-group-sm">
-              <input typse="text" class="form-control " placeholder="Search" />
-              <div class="input-group-append ">
-                <button class="btn" type="button">
-                  <i class="fa fa-search text-white"></i>
-                </button>
-              </div>
-            </div>
-          </form> */}
           <ul class="navbar-nav  fw-normal">
             <li class="nav-item active p-2">
               <Link class="nav-link" to="/">
@@ -77,10 +69,25 @@ function Header() {
                 Donate
               </Link>
             </li>
+          </ul>
+
+          {/* Form needs to be fixed */}
+          <ul class="navbar-nav mr-auto">
             <li class="nav-item p-2">
-              <Link class="nav-link" to="/about">
-                Product Map
-              </Link>
+              <form class="form-inline my-2 my-lg-0">
+                <div class="input-group input-group-sm">
+                  <input
+                    typse="text"
+                    class="form-control "
+                    placeholder="Search"
+                  />
+                  <div class="input-group-append ">
+                    <button class="btn" type="button">
+                      <i class="fa fa-search text-white"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
             </li>
           </ul>
           {!isAuthenticated && (
