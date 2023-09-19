@@ -11,9 +11,8 @@ class HomePage extends React.Component {
       <div>
         <Header />
         <Banner />
-        <SectionCard></SectionCard>
-        <Footer></Footer>
-
+        <SectionCard />
+        <Footer />
       </div>
     );
   }

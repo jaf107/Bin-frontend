@@ -27,7 +27,7 @@ function Header() {
   }
 
   return (
-    <div className="container header z-index-n1">
+    <div className="container header z-index-n1 ">
       <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-3">
         <Link class="navbar-brand" to="/">
           <img src={require("../../assets/logo.png")} alt="logo" width={70} />

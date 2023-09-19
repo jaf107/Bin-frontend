@@ -51,8 +51,8 @@ function App() {
             exact
             element={<ObjectDetect />}
           ></Route>
-
-          <Route path="/" exact element={<HomePage />}></Route>
+          <Route index exact element={<HomePage />}></Route>
+          <Route path="/home" element={<HomePage />}></Route>
           <Route path="/login" exact element={<Login />}></Route>
           <Route path="/chat" exact element={<Chat />}></Route>
           <Route path="/home" exact element={<Home />}></Route>

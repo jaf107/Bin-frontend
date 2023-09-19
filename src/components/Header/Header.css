@@ -28,3 +28,7 @@
 .header .input-group-append .btn {
   border-radius: 0px 10px 10px 0px !important;
 }
+
+.header-shadow {
+  box-shadow: 0 4px 2px -2px gray;
+}
