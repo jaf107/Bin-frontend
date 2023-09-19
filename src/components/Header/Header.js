@@ -21,14 +21,14 @@ function Header() {
 
   function logoutUser() {
     dispatch(logout());
-    console.log(isAuthenticated);
+    // console.log(isAuthenticated);
     alert.success("Logout Successfully");
     //navigate('/login');
   }
 
   return (
     <div className="container header z-index-n1">
-      <nav class="navbar navbar-expand-lg">
+      <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-3">
         <Link class="navbar-brand" to="/">
           <img src={require("../../assets/logo.png")} alt="logo" width={70} />
         </Link>
@@ -49,55 +49,42 @@ function Header() {
           id="navbarSupportedContent"
         >
           <ul class="navbar-nav  fw-normal">
-            <li class="nav-item active p-2">
+            <li class="nav-item active m-1 p-1">
               <Link class="nav-link" to="/">
                 Home
               </Link>
             </li>
-            <li class="nav-item p-2">
+            <li class="nav-item p-1 m-1">
               <Link class="nav-link" to="/marketplace">
                 Marketplace
               </Link>
             </li>
-            <li class="nav-item p-2">
+            <li class="nav-item p-1 m-1">
               <Link class="nav-link" to="/recycle">
                 Recycle
               </Link>
             </li>
-            <li class="nav-item p-2">
+            <li class="nav-item p-1 m-1">
               <Link class="nav-link" to="/donate">
                 Donate
               </Link>
             </li>
           </ul>
-
-          {/* Form needs to be fixed */}
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item p-2">
-              <form class="form-inline my-2 my-lg-0">
-                <div class="input-group input-group-sm">
-                  <input
-                    typse="text"
-                    class="form-control "
-                    placeholder="Search"
-                  />
-                  <div class="input-group-append ">
-                    <button class="btn" type="button">
-                      <i class="fa fa-search text-white"></i>
-                    </button>
-                  </div>
-                </div>
-              </form>
+          <ul class="navbar-nav mr-auto ">
+            <li class="nav-item p-1 btn-warning nav-pill">
+              <Link class="nav-link " to="/addproduct">
+                + Product
+              </Link>
             </li>
           </ul>
           {!isAuthenticated && (
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item p-2">
+              <li class="nav-item p-1">
                 <Link class="nav-link " to="/login">
                   <i class="fa-solid fa-right-to-bracket fs-4"></i>
                 </Link>
               </li>
-              <li class="nav-item p-2">
+              <li class="nav-item p-1">
                 <Link class="nav-link " to="/register">
                   <i class="fa-solid fa-user-plus fs-4"></i>
                 </Link>

@@ -9,22 +9,22 @@
   letter-spacing: 1px;
 }
 .header .nav-item:hover {
-  background-color: rgb(32, 193, 189, .5);
+  background-color: #289dd2;
   border-radius: 5px;
   transition: ease-in-out 500ms;
 }
 
 .header .nav-item:hover a {
   color: white !important;
-  font-weight: 500;
 }
 .header a {
-  color: #20C1BD !important;
+  color: #1d4355 !important;
+  font-weight: bold;
+  font-size: 1rem;
 }
-.header .btn {
-  background-color: #20C1BD;
-}
-.header .input-group-append .btn{
-    border-radius: 0px 15px 15px 0px !important;
-
+/* .header .btn {
+  background-color: #20c1bd;
+} */
+.header .input-group-append .btn {
+  border-radius: 0px 10px 10px 0px !important;
 }
