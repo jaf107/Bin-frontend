@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, register } from "../../redux/actions/userActions";
 import { useAlert } from "react-alert";
+import "./Register.css";
 // import GoogleMap from "../GoogleMap";
 function Register({ location }) {
   const dispatch = useDispatch();
@@ -57,7 +58,7 @@ function Register({ location }) {
     myForm.set("email", email);
     myForm.set("password", password);
     myForm.set("phone", phone);
-    myForm.set("avatar", avatar);
+    // myForm.set("avatar", avatar);
     myForm.set("address", address);
 
     dispatch(register(myForm));
@@ -104,24 +105,28 @@ function Register({ location }) {
             alt="register"
           />
         </div>
-        <div className="col-md-6 bg-white p-4">
-          <h3 className="pb-3 text-center fw-bold mt-5">REGISTER</h3>
+        <div className="col-md-6 bg-white p-3">
+          <h3 className="pb-1 text-center fw-bold mt-5">REGISTER</h3>
           <div className="form-style p-5">
             <form onSubmit={registerSubmit}>
-              <div className="form-group pb-3 text-center">
+              {/* <div className="form-group pb-1 text-center">
+                <label htmlFor="avatar" className="file-input-label">
+                  <input
+                    type="file"
+                    id="avatar"
+                    name="avatar"
+                    accept="image/*"
+                    onChange={registerDataChange}
+                  />
+                  <div className="file-input-button">+</div>
+                </label>
                 <img
                   src={avatarPreview}
                   alt="Avatar Preview"
                   className=" text-center"
                   width={100}
                 />
-                <input
-                  type="file"
-                  name="avatar"
-                  accept="image/*"
-                  onChange={registerDataChange}
-                />
-              </div>
+              </div> */}
               <div className="form-group pb-3">
                 <input
                   type="text"
