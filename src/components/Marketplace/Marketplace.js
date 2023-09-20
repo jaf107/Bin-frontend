@@ -45,14 +45,6 @@ const Marketplace = () => {
           <div className="container">
             <div className="row">
               <div className=" col-md-3">
-                <div class="d-grid gap-2">
-                  <Link
-                    className="btn border-0 addbtn btn-block"
-                    to={"/addproduct"}
-                  >
-                    Add Product
-                  </Link>
-                </div>
                 <Search></Search>
               </div>
 

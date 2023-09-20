@@ -54,7 +54,7 @@ import {
 import axios from "axios";
 axios.defaults.withCredentials = true;
 // Login
-export const login = (email, password) => async (dispatch) => {
+export const login = (username, password) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
 
@@ -62,7 +62,7 @@ export const login = (email, password) => async (dispatch) => {
 
     const { data } = await axios.post(
       `http://localhost:5000/api/v1/login`,
-      { email, password },
+      { username, password },
       config
     );
 
@@ -77,13 +77,13 @@ export const register = (userData) => async (dispatch) => {
   try {
     dispatch({ type: REGISTER_USER_REQUEST });
 
-    const config = { headers: { "Content-Type": "application/json" } };
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
     const { data } = await axios.post(
       `http://localhost:5000/api/v1/register`,
       userData,
       config
     );
-    console.log(data);
+    // console.log(data);
 
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
   } catch (error) {

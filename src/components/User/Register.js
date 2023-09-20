@@ -59,7 +59,7 @@ function Register({ location }) {
     myForm.set("password", password);
     myForm.set("phone", phone);
     // myForm.set("avatar", avatar);
-    myForm.set("address", address);
+    // myForm.set("address", address);
 
     dispatch(register(myForm));
   };

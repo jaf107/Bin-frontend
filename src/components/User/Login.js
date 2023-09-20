@@ -12,26 +12,26 @@ function Login({ history, location }) {
   const navigate = useNavigate();
   const { error, isAuthenticated } = useSelector((state) => state.user);
 
-  const [loginEmail, setLoginEmail] = useState("");
+  const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
+  // const validateEmail = (email) => {
+  //   return String(email)
+  //     .toLowerCase()
+  //     .match(
+  //       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  //     );
+  // };
   function checkPassword(str) {
     var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,16}$/;
     return re.test(str);
   }
   const loginSubmit = (e) => {
     e.preventDefault();
-    if (validateEmail(loginEmail))
-      if (checkPassword(loginPassword))
-        dispatch(login(loginEmail, loginPassword));
-      else alert.error("Enter Valid Password");
-    else alert.error("Enter Valid Email Address");
+    // if (validateEmail(loginUsername))
+    if (checkPassword(loginPassword))
+      dispatch(login(loginUsername, loginPassword));
+    else alert.error("Enter Valid Password");
+    // else alert.error("Enter Valid Email Address");
   };
 
   useEffect(() => {
@@ -41,10 +41,11 @@ function Login({ history, location }) {
     }
 
     if (isAuthenticated) {
-      if (loginEmail === "jiteshsureka@gmail.com") navigate("/admin/dashboard");
+      if (loginUsername === "jiteshsureka@gmail.com")
+        navigate("/admin/dashboard");
       else navigate("/");
     }
-  }, [dispatch, error, alert, navigate, isAuthenticated, loginEmail]);
+  }, [dispatch, error, alert, navigate, isAuthenticated, loginUsername]);
 
   return (
     <div class="container pb-5">
@@ -63,13 +64,13 @@ function Login({ history, location }) {
               <div class="form-group pb-3">
                 <input
                   type="text"
-                  placeholder="Email"
+                  placeholder="Username"
                   class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
+                  id="exampleInputUsername"
+                  aria-describedby="usernameHelp"
                   required
-                  value={loginEmail}
-                  onChange={(e) => setLoginEmail(e.target.value)}
+                  value={loginUsername}
+                  onChange={(e) => setLoginUsername(e.target.value)}
                 />
               </div>
               <div class="form-group pb-3">

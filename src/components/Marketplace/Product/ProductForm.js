@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import Header from "../../Header/Header";
-import { useDispatch, useSelector } from "react-redux";
-import Footer from "../../Footer/Footer";
+import { useDispatch } from "react-redux";
 import { addProduct } from "../../../redux/actions/productActions";
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import "./ProductForm.css";
 import { useAlert } from "react-alert";
 import GoogleMap from "../../GoogleMap";
@@ -13,7 +9,6 @@ import GoogleMap from "../../GoogleMap";
 const ProductForm = () => {
   const dispatch = useDispatch();
   const ref = useRef();
-  const navigate = useNavigate();
   const alert = useAlert();
   const [product, setProduct] = useState({
     name: "",
@@ -164,10 +159,10 @@ const ProductForm = () => {
             />
           </div>
 
-          <GoogleMap
+          {/* <GoogleMap
             className="form-group mb-4"
             onSetAddress={handleAddress}
-          ></GoogleMap>
+          ></GoogleMap> */}
           <div className="form-group mb-4">
             <textarea
               className="form-control"
