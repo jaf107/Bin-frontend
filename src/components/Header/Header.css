@@ -20,7 +20,7 @@
 .header a {
   color: #1d4355 !important;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 0.9rem !important;
 }
 /* .header .btn {
   background-color: #20c1bd;

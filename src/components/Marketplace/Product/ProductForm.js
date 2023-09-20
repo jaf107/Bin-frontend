@@ -4,7 +4,6 @@ import { addProduct } from "../../../redux/actions/productActions";
 import { useRef } from "react";
 import "./ProductForm.css";
 import { useAlert } from "react-alert";
-import GoogleMap from "../../GoogleMap";
 
 const ProductForm = () => {
   const dispatch = useDispatch();
@@ -96,8 +95,24 @@ const ProductForm = () => {
   return (
     <div>
       <div className="container productform">
-        <h3 className=" mt-3 mb-4">Add A New Product </h3>
-        <form className="form-floating" onSubmit={productSubmit}>
+        {/*   <form className="form-floating" onSubmit={productSubmit}>
+          <div className="form-group mb-4">
+            <select
+              id="product_type"
+              name="product_type"
+              className="form-control"
+              value={product_type.toLowerCase()}
+              onChange={productDataChange}
+              required
+            >
+              <option value="" disabled selected>
+                Select Product Type
+              </option>
+              <option>Marketplace</option>
+              <option>Recycle</option>
+              <option>Donation</option>
+            </select>
+          </div>
           <div className="form-group mb-4">
             <input
               placeholder="Name"
@@ -128,23 +143,6 @@ const ProductForm = () => {
               <option>Laptop</option>
             </select>
           </div>
-          <div className="form-group mb-4">
-            <select
-              id="product_type"
-              name="product_type"
-              className="form-control"
-              value={product_type.toLowerCase()}
-              onChange={productDataChange}
-              required
-            >
-              <option value="" disabled selected>
-                Select Product Type
-              </option>
-              <option>Marketplace</option>
-              <option>Recycle</option>
-              <option>Donation</option>
-            </select>
-          </div>
 
           <div className="form-group mb-4">
             <input
@@ -158,11 +156,19 @@ const ProductForm = () => {
               onChange={productDataChange}
             />
           </div>
+          <div className="form-group mb-4">
+            <input
+              id="location"
+              name="location"
+              placeholder="Enter Location here"
+              className="form-control"
+              required=""
+              type="text"
+              value={address}
+              onChange={productDataChange}
+            />
+          </div>
 
-          {/* <GoogleMap
-            className="form-group mb-4"
-            onSetAddress={handleAddress}
-          ></GoogleMap> */}
           <div className="form-group mb-4">
             <textarea
               className="form-control"
@@ -234,14 +240,204 @@ const ProductForm = () => {
           </div>
 
           <div className=" ">
-            {/* <button
-              type="submit"
-              className="btn btn-success border-0  fw-normal"
-            >
-              {" "}
-              Add Product
-            </button> */}
             <button className="btn btn-success addbtn">Add Product</button>
+          </div>
+        </form>
+       */}
+        <form className="form-floating" onSubmit={productSubmit}>
+          <div className="row ">
+            <div className="col-md-6">
+              <div className="form-group mb-4 flex">
+                <div className="col-md-1 center pt-3">
+                  <i class="fa-solid fa-box-archive"></i>
+                </div>
+
+                <input
+                  className="form-control"
+                  required
+                  name="name"
+                  type="text"
+                  placeholder="Product Name"
+                  value={name}
+                  onChange={productDataChange}
+                />
+              </div>
+
+              <div className="form-group mb-4 flex">
+                <div className="col-md-1 center pt-3">
+                  <i className="fa fa-list"></i>
+                </div>
+
+                <select
+                  id="product_category"
+                  name="category"
+                  className="form-control"
+                  value={category}
+                  onChange={productDataChange}
+                >
+                  <option value="" disabled>
+                    Select Product Category
+                  </option>
+                  <option>Book</option>
+                  <option>Newspaper</option>
+                  <option>Cell Phone</option>
+                  <option>Bottle</option>
+                  <option>Glass</option>
+                  <option>Laptop</option>
+                </select>
+              </div>
+
+              <div className="form-group mb-4 flex">
+                <div className="col-md-1 center pt-3">
+                  <i className="fa fa-cubes"></i>
+                </div>
+
+                <input
+                  id="quantity"
+                  name="quantity"
+                  className="form-control"
+                  required=""
+                  type="text"
+                  placeholder="Available Quantity"
+                  value={quantity}
+                  onChange={productDataChange}
+                />
+              </div>
+
+              <div className="form-group mb-4 flex">
+                <div className="col-md-1 center pt-3">
+                  <i className="fa fa-map-marker"></i>
+                </div>
+                <input
+                  id="location"
+                  name="location"
+                  className="form-control"
+                  required
+                  type="text"
+                  placeholder="Enter Location here"
+                  value={address}
+                  onChange={productDataChange}
+                />
+              </div>
+
+              <div className="form-group mb-4 flex">
+                <div className="col-md-1 center pt-3">
+                  <i className="fa fa-check-circle"></i>
+                </div>
+                <select
+                  id="product_condition"
+                  name="condition"
+                  className="form-control"
+                  value={condition}
+                  onChange={productDataChange}
+                >
+                  <option value="" disabled>
+                    Select Product Condition
+                  </option>
+                  <option>New</option>
+                  <option>Used</option>
+                </select>
+              </div>
+
+              <div className="form-group mb-4 flex">
+                <div className="col-md-1 center pt-3">
+                  <i className="fa fa-money"></i>
+                </div>
+                <input
+                  id="purchase_price"
+                  name="purchase_price"
+                  className="form-control"
+                  required=""
+                  type="number"
+                  placeholder="Purchase Price"
+                  value={purchase_price}
+                  onChange={productDataChange}
+                />
+              </div>
+
+              <div className="form-group mb-4 flex">
+                <div className="col-md-1 center pt-3">
+                  <i className="fa fa-calendar"></i>
+                </div>
+                <input
+                  id="date_of_purchase"
+                  name="date_of_purchase"
+                  ref={ref}
+                  onFocus={() => (ref.current.type = "date")}
+                  onBlur={() => (ref.current.type = "text")}
+                  className="form-control"
+                  required=""
+                  type="text"
+                  placeholder="Enter Date of Purchase"
+                  value={date_of_purchase}
+                  onChange={productDataChange}
+                />
+              </div>
+            </div>
+
+            <div className="col-md-6">
+              <div className="form-group mb-4 flex">
+                <div className="col-md-1 center pt-3">
+                  <i className="fa fa-shopping-cart"></i>
+                </div>
+                <select
+                  id="product_type"
+                  name="product_type"
+                  className="form-control text-primary"
+                  value={product_type.toLowerCase()}
+                  onChange={productDataChange}
+                  required
+                >
+                  <option value="" disabled id="initialTypeSelection">
+                    Select Product Type
+                  </option>
+                  <option>Marketplace</option>
+                  <option>Recycle</option>
+                  <option>Donation</option>
+                </select>
+              </div>
+              <div className="form-group mb-4 flex">
+                <div className="col-md-1 center pt-3">
+                  <i className="fa fa-info-circle"></i>
+                </div>
+                <textarea
+                  className="mt-2 p-1"
+                  id="product_description"
+                  name="description"
+                  placeholder="Write Product Description here"
+                  value={description}
+                  rows="4"
+                  cols="100"
+                  onChange={productDataChange}
+                ></textarea>
+              </div>
+              <div id="createProductFormFile" className="center">
+                <label for="avatar" class="file-input-label">
+                  <i class="fa fa-plus"></i>
+                </label>
+                <input
+                  type="file"
+                  id="avatar"
+                  name="avatar"
+                  accept="image/*"
+                  onChange={createProductImagesChange}
+                  multiple
+                  class="file-input"
+                />
+              </div>
+
+              <div id="createProductFormImage">
+                {imagesPreview.map((image, index) => (
+                  <img key={index} src={image} alt="Product Preview" />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <button className="btn btn-success addbtn w-40">
+              <i className="fa fa-plus"></i> Add Product
+            </button>
           </div>
         </form>
       </div>

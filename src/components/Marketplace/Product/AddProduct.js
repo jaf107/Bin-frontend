@@ -9,20 +9,9 @@ const AddProduct = () => {
     <div>
       <Header />
       <div className="container productform">
-        <div className="row">
-          <div className="col-md-6 p-5">
-            <ProductForm />
-          </div>
-          {/* <div className="col-md-6 text-center">
-            <lottie-player
-              src="https://assets10.lottiefiles.com/packages/lf20_komemhfl.json"
-              background="transparent"
-              speed="1"
-              style={{ width: "600px", height: "600px" }}
-              loop
-              autoplay
-            ></lottie-player>
-          </div> */}
+        <h4 className="text-center bg-light p-4">Product Form</h4>
+        <div className=" shadow p-5 mb-4">
+          <ProductForm />
         </div>
       </div>
       <Footer />

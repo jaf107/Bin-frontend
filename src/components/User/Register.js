@@ -91,7 +91,7 @@ function Register({ location }) {
     }
 
     if (isAuthenticated) {
-      navigate("/");
+      navigate("/login");
     }
   }, [dispatch, error, alert, navigate, isAuthenticated]);
 

@@ -66,6 +66,13 @@ export const userReducer = (state = { user: {} }, action) => {
       };
     case LOGIN_SUCCESS:
     case REGISTER_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isAuthenticated: false,
+        user: action.payload,
+      };
+
     case LOAD_USER_SUCCESS:
       return {
         ...state,
@@ -104,12 +111,12 @@ export const userReducer = (state = { user: {} }, action) => {
         loading: false,
         error: action.payload,
       };
-      case UPDATE_USER_SUCCESS:
-        return {
-          ...state,
-          loading: false,
-          user: action.payload,
-        };
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        user: action.payload,
+      };
     case CLEAR_ERRORS:
       return {
         ...state,
@@ -164,17 +171,17 @@ export const profileReducer = (state = {}, action) => {
         ...state,
         isDeleted: false,
       };
-      case VERIFY_USER_REQUEST:
-      case VERIFY_USER_SUCCESS:
-        return {
-          ...state,
-          success: action.payload,
-        };
-        case VERIFY_USER_FAIL:
-          return {
-            ...state,
-            error: action.payload,
-          };
+    case VERIFY_USER_REQUEST:
+    case VERIFY_USER_SUCCESS:
+      return {
+        ...state,
+        success: action.payload,
+      };
+    case VERIFY_USER_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
     case CLEAR_ERRORS:
       return {
         ...state,
@@ -292,13 +299,13 @@ export const userDetailsReducer = (state = { userDetail: {} }, action) => {
   }
 };
 
-export const FavoriteReducer = (state = { favorites:[] }, action) => {
+export const FavoriteReducer = (state = { favorites: [] }, action) => {
   switch (action.type) {
     case ADD_FAVORITE_FAIL:
-      return{
+      return {
         ...state,
-        error : true
-      }
+        error: true,
+      };
     case ADD_FAVORITE_REQUEST:
       return {
         ...state,
@@ -323,18 +330,18 @@ export const FavoriteReducer = (state = { favorites:[] }, action) => {
         loading: false,
         favorites: action.payload,
       };
-      case DELETE_USER_FAIL:
-        case DELETE_USER_REQUEST:
-          return {
-            ...state,
-            loading: true,
-            error: null,
-          };
-        case DELETE_FAVORITE_SUCCESS:
-          return {
-            ...state,
-            loading: false,
-          };
+    case DELETE_USER_FAIL:
+    case DELETE_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case DELETE_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
     case CLEAR_ERRORS:
       return {
         ...state,
@@ -346,14 +353,13 @@ export const FavoriteReducer = (state = { favorites:[] }, action) => {
   }
 };
 
-
-export const NotificationReducer = (state = { notifications:[]}, action) => {
+export const NotificationReducer = (state = { notifications: [] }, action) => {
   switch (action.type) {
     case SEND_NOTIFICATION_FAIL:
-      return{
+      return {
         ...state,
-        error : true
-      }
+        error: true,
+      };
     case SEND_NOTIFICATION_REQUEST:
       return {
         ...state,
@@ -364,7 +370,7 @@ export const NotificationReducer = (state = { notifications:[]}, action) => {
       return {
         ...state,
         loading: false,
-        notifications : action.payload
+        notifications: action.payload,
       };
     case CLEAR_ERRORS:
       return {
