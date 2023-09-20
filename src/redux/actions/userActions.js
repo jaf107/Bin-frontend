@@ -66,6 +66,9 @@ export const login = (username, password) => async (dispatch) => {
       config
     );
 
+    // need to transfer this to seperate function
+    localStorage.setItem("user_session", JSON.stringify(data));
+
     dispatch({ type: LOGIN_SUCCESS, payload: data.user });
   } catch (error) {
     dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
