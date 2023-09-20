@@ -51,8 +51,12 @@ import {
   VERIFY_USER_SUCCESS,
   VERIFY_USER_FAIL,
 } from "../constants/userConstants";
+
 import axios from "axios";
+import fetcher from "../../utils/fetcher";
+
 axios.defaults.withCredentials = true;
+
 // Login
 export const login = (username, password) => async (dispatch) => {
   try {
@@ -81,12 +85,18 @@ export const register = (userData) => async (dispatch) => {
     dispatch({ type: REGISTER_USER_REQUEST });
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
-    const { data } = await axios.post(
+    // const { data } = await axios.post(
+    //   `http://localhost:5000/api/v1/register`,
+    //   userData,
+    //   config
+    // );
+
+    const data = await fetcher(
       `http://localhost:5000/api/v1/register`,
-      userData,
-      config
+      "POST",
+      userData
     );
-    // console.log(data);
+    console.log(data);
 
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
   } catch (error) {

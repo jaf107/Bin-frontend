@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const fetcher = async (url, method, body, options) => {
+const fetcher = async (url, method, body, options = {}) => {
   let data;
   method = method.toUpperCase();
   if (method === "GET") {
