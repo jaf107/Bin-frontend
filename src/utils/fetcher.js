@@ -4,13 +4,13 @@ const fetcher = async (url, method, body, options) => {
   let data;
   method = method.toUpperCase();
   if (method === "GET") {
-    data = getReq(url, options);
+    data = await getReq(url, options);
   } else if (method === "POST") {
-    data = postReq(url, body, options);
+    data = await postReq(url, body, options);
   } else if (method === "PUT") {
-    data = putReq(url, body, options);
+    data = await putReq(url, body, options);
   } else if (method === "DELETE") {
-    data = deleteReq(url, options);
+    data = await deleteReq(url, options);
   }
   return data;
 };
@@ -39,6 +39,14 @@ const getAuthorizationHeaderConfig = (options) => {
   return config;
 };
 
+const translateBody = (body) => {
+  if (body instanceof FormData) {
+    return Object.fromEntries(body.entries());
+  } else {
+    return body;
+  }
+};
+
 const getReq = async (url, options) => {
   const authConfig = getAuthorizationHeaderConfig(options);
   const { data } = await axios.get(url, authConfig);
@@ -47,12 +55,14 @@ const getReq = async (url, options) => {
 
 const postReq = async (url, body, options) => {
   const authConfig = getAuthorizationHeaderConfig(options);
+  body = translateBody(body);
   const { data } = await axios.post(url, body, authConfig);
   return data;
 };
 
 const putReq = async (url, body, options) => {
   const authConfig = getAuthorizationHeaderConfig(options);
+  body = translateBody(body);
   const { data } = await axios.put(url, body, authConfig);
   return data;
 };
