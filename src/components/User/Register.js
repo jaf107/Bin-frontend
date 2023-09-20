@@ -54,7 +54,7 @@ function Register({ location }) {
       alert.error("Phone Number Invalid");
       return;
     }
-    myForm.set("name", name);
+    myForm.set("username", name);
     myForm.set("email", email);
     myForm.set("password", password);
     myForm.set("phone", phone);
