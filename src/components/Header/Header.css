@@ -17,8 +17,8 @@
 .header .nav-item:hover a {
   color: white !important;
 }
-.header a {
-  color: #1d4355 !important;
+.header .nav-link {
+  color: #1d4355;
   font-weight: bold;
   font-size: 0.9rem !important;
 }
@@ -31,4 +31,8 @@
 
 .header-shadow {
   box-shadow: 0 4px 2px -2px gray;
+}
+
+.ai_button a {
+  color: white !important;
 }

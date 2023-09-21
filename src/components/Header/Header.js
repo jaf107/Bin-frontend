@@ -49,7 +49,7 @@ function Header() {
           id="navbarSupportedContent"
         >
           <ul class="navbar-nav  fw-normal">
-            <li class="nav-item active m-1 p-1">
+            <li class="nav-item  m-1 p-1">
               <Link class="nav-link" to="/">
                 Home
               </Link>
@@ -67,6 +67,17 @@ function Header() {
             <li class="nav-item p-1 m-1">
               <Link class="nav-link" to="/donate">
                 Donate
+              </Link>
+            </li>
+            <li class="nav-item p-1 m-1">
+              <Link
+                class="nav-link btn-danger ai_button"
+                to="/object-detection"
+                style={{
+                  color: "white",
+                }}
+              >
+                AI
               </Link>
             </li>
           </ul>

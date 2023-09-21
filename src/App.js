@@ -33,6 +33,7 @@ import ObjectDetect from "./components/Marketplace/ObjectDetect";
 // import GoogleMap from "./components/GoogleMap";
 import ForgotPassword from "./components/User/ForgotPassword";
 import ResetPassword from "./components/User/ResetPassword";
+import ObjectDetection from "./components/object-detection/ObjectDetection";
 // import { useLoadScript } from "@react-google-maps/api";
 function App() {
   // const { isLoaded } = useLoadScript({
@@ -72,6 +73,7 @@ function App() {
           <Route path="/profile/edit" element={<EditAccount />}></Route>
           <Route path="/donate" element={<Donate />}></Route>
           <Route path="/recycle" element={<Recycle />}></Route>
+          <Route path="/object-detection" element={<ObjectDetection />}></Route>
           <Route
             path="/admin/dashboard"
             exact
