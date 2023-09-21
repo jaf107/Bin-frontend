@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getProducts } from "../../redux/actions/productActions";
-
+import "./Search.css";
 export default function Search() {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
@@ -14,19 +14,23 @@ export default function Search() {
   };
   return (
     <div>
-      <div class="input-group mt-3">
-        <div class="form-outline">
+      <div class="col-md-12 mt-3 flex ">
+        <div class="">
           <input
             type="search"
             id="form1"
             name="keyword"
             value={keyword}
-            class="form-control"
+            class="form-control rounded_edge search_bar shadow-sm"
             placeholder="Search a Product"
             onChange={onKeywordChange}
           />
         </div>
-        <button type="button" class="btn btn-primary" onClick={onSearch}>
+        <button
+          type="button"
+          class="btn search_button btn-info "
+          onClick={onSearch}
+        >
           <i class="fas fa-search"></i>
         </button>
       </div>

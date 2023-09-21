@@ -44,7 +44,7 @@ const Marketplace = () => {
           </div>
           <div className="container">
             <div className="row">
-              <div className=" col-md-3">
+              <div className=" ">
                 <Search></Search>
               </div>
 
