@@ -12,12 +12,13 @@ function Register({ location }) {
   const { error, isAuthenticated } = useSelector((state) => state.user);
   const [user, setUser] = useState({
     name: "",
+    username: "",
     email: "",
     password: "",
     phone: "",
   });
 
-  const { name, email, password, phone } = user;
+  const { name, username, email, password, phone } = user;
   const [confirmPassword, setConfirmPassword] = useState("");
   const [avatar, setAvatar] = useState("/Profile.png");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
@@ -54,7 +55,8 @@ function Register({ location }) {
       alert.error("Phone Number Invalid");
       return;
     }
-    myForm.set("username", name);
+    myForm.set("name", name);
+    myForm.set("username", username);
     myForm.set("email", email);
     myForm.set("password", password);
     myForm.set("phone", phone);
@@ -135,6 +137,17 @@ function Register({ location }) {
                   required
                   name="name"
                   value={name}
+                  onChange={registerDataChange}
+                />
+              </div>
+              <div className="form-group pb-3">
+                <input
+                  type="text"
+                  className=" form-control"
+                  placeholder="Username"
+                  required
+                  name="username"
+                  value={username}
                   onChange={registerDataChange}
                 />
               </div>
