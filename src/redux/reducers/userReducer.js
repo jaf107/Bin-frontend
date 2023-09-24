@@ -1,3 +1,4 @@
+import { act } from "react-dom/test-utils";
 import {
   LOGIN_REQUEST,
   LOGIN_FAIL,
@@ -65,6 +66,11 @@ export const userReducer = (state = { user: {} }, action) => {
         isAuthenticated: false,
       };
     case LOGIN_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload,
+      };
     case REGISTER_USER_SUCCESS:
       return {
         ...state,

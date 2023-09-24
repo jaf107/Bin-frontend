@@ -60,8 +60,8 @@ function Register({ location }) {
     myForm.set("phone", phone);
     // myForm.set("avatar", avatar);
     // myForm.set("address", address);
-
     dispatch(register(myForm));
+    navigate("/login");
   };
   const handleAddress = (langValue) => {
     setAddress(langValue);

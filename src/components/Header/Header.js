@@ -25,7 +25,7 @@ function Header() {
     alert.success("Logout Successfully");
     //navigate('/login');
   }
-
+  // console.log(user.roles);
   return (
     <div className="container header z-index-n1 ">
       <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-3">
@@ -112,7 +112,7 @@ function Header() {
                   <i className="fa-solid fa-user fs-4"></i>
                 </Link>
               </li>
-              {user && user.email === "jiteshsureka@gmail.com" && (
+              {user && user.roles.includes("ROLE_ADMIN") && (
                 <li class="nav-item p-2 pt-3">
                   <Link
                     class="nav-link  text-white fw-bold"
@@ -122,11 +122,8 @@ function Header() {
                   </Link>
                 </li>
               )}
-              <li class="nav-item p-2">
-                <button
-                  class="nav-link btn text-white fw-bold"
-                  onClick={logoutUser}
-                >
+              <li class="nav-item p-1 m-1">
+                <button class="nav-link btn  fw-bold" onClick={logoutUser}>
                   Logout
                 </button>
               </li>

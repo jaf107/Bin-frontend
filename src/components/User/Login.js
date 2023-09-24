@@ -28,9 +28,10 @@ function Login({ history, location }) {
   const loginSubmit = (e) => {
     e.preventDefault();
     // if (validateEmail(loginUsername))
-    if (checkPassword(loginPassword))
+    if (checkPassword(loginPassword)) {
       dispatch(login(loginUsername, loginPassword));
-    else alert.error("Enter Valid Password");
+      navigate("/");
+    } else alert.error("Enter Valid Password");
     // else alert.error("Enter Valid Email Address");
   };
 
