@@ -35,9 +35,15 @@ const ProductForm = () => {
 
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
-  const { user } = useSelector((state) => state.user);
+  const { user, isAuthenticated } = useSelector((state) => state.user);
   // console.log(user);
+  // let id;
+  // if (isAuthenticated) {
+  //  id = user;
+  // }
+
   const { id } = user;
+
   // console.log(id);
   const productSubmit = (e) => {
     e.preventDefault();
@@ -47,11 +53,11 @@ const ProductForm = () => {
     productForm.set("quantity", quantity);
     productForm.set("condition", condition);
     productForm.set("description", description);
-    productForm.set("date_of_purchase", date_of_purchase);
-    productForm.set("purchase_price", purchase_price);
-    productForm.set("product_type", product_type.toLowerCase());
+    productForm.set("dateOfPurchase", date_of_purchase);
+    productForm.set("purchasePrice", purchase_price);
+    productForm.set("productType", product_type.toLowerCase());
     productForm.set("address", address);
-    productForm.set("user", id);
+    productForm.set("userId", id);
     // console.log(user.id);
     images.forEach((image) => {
       productForm.append("images", image);
@@ -299,7 +305,6 @@ const ProductForm = () => {
                   id="quantity"
                   name="quantity"
                   className="form-control"
-                  required=""
                   type="text"
                   placeholder="Available Quantity"
                   value={quantity}

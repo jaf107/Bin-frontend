@@ -52,8 +52,10 @@ export const addProduct = (productData) => async (dispatch) => {
   try {
     dispatch({ type: ADD_PRODUCT_REQUEST });
     console.log(productData);
+    console.log("In Product Data");
     const data = await fetcher(
-      `http://localhost:5000/api/v1/product/new`,
+      `http://127.0.0.1:5000/api/v1/product/new`,
+      "POST",
       productData
     );
 
