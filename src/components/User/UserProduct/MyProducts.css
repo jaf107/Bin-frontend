@@ -1,3 +1,8 @@
-tr, th{
-    text-align: center;
+tr,
+th {
+  text-align: center;
+}
+
+.myproducts_box {
+  height: 530px;
 }

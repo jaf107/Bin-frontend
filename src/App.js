@@ -43,7 +43,6 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("Loading User");
     dispatch(loadUser());
   }, [dispatch]);
   return (

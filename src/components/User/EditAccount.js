@@ -8,7 +8,7 @@ import {
   updateProfile,
 } from "../../redux/actions/userActions";
 import { useAlert } from "react-alert";
-
+import "./EditAccount.css";
 function EditAccount({ location }) {
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -71,87 +71,95 @@ function EditAccount({ location }) {
   }, [dispatch, error, alert]);
 
   return (
-    <div className="form-style p-5">
-      <form onSubmit={updateSubmit}>
-        <div className="row">
-          <div className="col-md-6">
-            <div className="form-group pb-3 text-center">
-              <img
-                src={avatarPreview}
-                alt="Avatar Preview"
-                className=" text-center"
-                width={100}
-              />
-              <input
-                type="file"
-                name="avatar"
-                accept="image/*"
-                onChange={editDataChange}
-              />
+    <div className="form-style shadow edit_box">
+      <div class="bio-graph-heading ">Edit Account</div>
+      <div class="panel-body bio-graph-info m-2 p-2">
+        <form onSubmit={updateSubmit}>
+          <div className="row m-2">
+            <div className="col-md-6 desc_col">
+              <div className="form-group pb-3">
+                <input
+                  type="text"
+                  className=" form-control"
+                  placeholder="Name"
+                  name="name"
+                  value={name}
+                  onChange={editDataChange}
+                />
+              </div>
+              <div className="form-group pb-3">
+                <input
+                  type="tel"
+                  placeholder="Phone Number (01********)"
+                  className="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  value={phone}
+                  onChange={editDataChange}
+                  name="phone"
+                />
+              </div>
+              <div className="form-group pb-3">
+                <input
+                  type="text"
+                  className=" form-control"
+                  placeholder="Address"
+                  name="address"
+                  value={address}
+                  onChange={editDataChange}
+                />
+              </div>
+              <div className="form-group pb-3">
+                <input
+                  type="password"
+                  className=" form-control"
+                  placeholder="Password"
+                  name="password"
+                  value={password}
+                  onChange={editDataChange}
+                />
+              </div>
+              <div className="form-group pb-3">
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  className="form-control"
+                  id="exampleInputPassword1"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </div>
             </div>
-            <div className="form-group pb-3">
-              <input
-                type="text"
-                className=" form-control"
-                placeholder="Name"
-                name="name"
-                value={name}
-                onChange={editDataChange}
-              />
+            <div className="col-md-6 image_col">
+              <div className="form-group pb-1 text-center">
+                <img
+                  src={avatarPreview}
+                  alt="Avatar Preview"
+                  className=" text-center"
+                  width={300}
+                />
+                <br />
+                <label htmlFor="avatar" className="file-input-label">
+                  <input
+                    type="file"
+                    id="avatar"
+                    name="avatar"
+                    accept="image/*"
+                    onChange={editDataChange}
+                  />
+                  <div className="file-input-button">+</div>
+                </label>
+              </div>
             </div>
-            <div className="form-group pb-3">
-              <input
-                type="tel"
-                placeholder="Phone Number (01********)"
-                className="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                value={phone}
-                onChange={editDataChange}
-                name="phone"
-              />
-            </div>
-          </div>
-          <div className="col-md-6">
-            <div className="form-group pb-3">
-              <input
-                type="text"
-                className=" form-control"
-                placeholder="Address"
-                name="address"
-                value={address}
-                onChange={editDataChange}
-              />
-            </div>
-            <div className="form-group pb-3">
-              <input
-                type="password"
-                className=" form-control"
-                placeholder="Password"
-                name="password"
-                value={password}
-                onChange={editDataChange}
-              />
-            </div>
-            <div className="form-group pb-3">
-              <input
-                type="password"
-                placeholder="Confirm Password"
-                className="form-control"
-                id="exampleInputPassword1"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
-          </div>
 
-          <div className="pb-2 text-center mt-4">
-            <button type="submit" className="btn btn-success w-50">
-              Register
-            </button>
+            <div className="p-2 text-center mt-4">
+              <button type="submit" className="btn btn-success edit-button">
+                Edit
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
