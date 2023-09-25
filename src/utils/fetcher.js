@@ -47,9 +47,9 @@ const translateBody = (body) => {
 };
 
 const getReq = async (url, options) => {
-  console.log("in get req");
+  // console.log("in get req");
   const authConfig = getAuthorizationHeaderConfig(options);
-  console.log(authConfig);
+  // console.log(authConfig);
   const { data } = await axios.get(url, authConfig);
   return data;
 };

@@ -84,13 +84,6 @@ export const register = (userData) => async (dispatch) => {
   try {
     dispatch({ type: REGISTER_USER_REQUEST });
 
-    const config = { headers: { "Content-Type": "multipart/form-data" } };
-    // const { data } = await axios.post(
-    //   `http://localhost:5000/api/v1/register`,
-    //   userData,
-    //   config
-    // );
-
     const data = await fetcher(
       `http://localhost:5000/api/v1/register`,
       "POST",
@@ -111,16 +104,10 @@ export const register = (userData) => async (dispatch) => {
 export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
-
-    // let user = JSON.parse(localStorage.getItem("user_session"));
-    // console.log(user.accessToken);
-
     let data = await fetcher(`http://localhost:5000/api/v1/me`, "GET");
-    console.log("In loadUser");
-    console.log(data);
-    // const { data } = await axios.get(`http://localhost:5000/api/v1/me`);
+    // console.log(data);
 
-    dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
+    dispatch({ type: LOAD_USER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
     console.error(error);

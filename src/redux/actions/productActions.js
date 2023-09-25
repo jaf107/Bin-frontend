@@ -40,22 +40,21 @@ import {
   VERIFY_PRODUCT_FAIL,
   EDIT_BID_REQUEST,
   EDIT_BID_SUCCESS,
-  EDIT_BID_FAIL
+  EDIT_BID_FAIL,
 } from "../constants/productConstants";
 import { VERIFY_USER_REQUEST } from "../constants/userConstants";
+import fetcher from "../../utils/fetcher";
+
 const axios = require("axios");
 axios.defaults.withCredentials = true;
 
 export const addProduct = (productData) => async (dispatch) => {
   try {
     dispatch({ type: ADD_PRODUCT_REQUEST });
-
-    const config = { headers: { "Content-Type": "application/json" } };
-
-    const { data } = await axios.post(
+    console.log(productData);
+    const data = await fetcher(
       `http://localhost:5000/api/v1/product/new`,
-      productData,
-      config
+      productData
     );
 
     dispatch({ type: ADD_PRODUCT_SUCCESS });
@@ -64,32 +63,35 @@ export const addProduct = (productData) => async (dispatch) => {
       type: ADD_PRODUCT_FAIL,
       payload: error.response.data.message,
     });
+    console.log(error);
   }
 };
 
 // Get Products
-export const getProducts = ( keyword = "", category = "" ) => async (dispatch) => {
-  try {
-    dispatch({ type: GET_PRODUCT_REQUEST });
-    const config = { headers: { "Content-Type": "application/json" } };
+export const getProducts =
+  (keyword = "", category = "") =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: GET_PRODUCT_REQUEST });
+      // const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.get(`http://localhost:5000/api/v1/product?keyword=${keyword}&category=${category}`);
-    dispatch({ type: GET_PRODUCT_SUCCESS, payload: data.product });
-  } catch (error) {
-    dispatch({ type: GET_PRODUCT_FAIL, payload: error });
-  }
-};
+      const { data } = await fetcher(
+        `http://localhost:5000/api/v1/product?keyword=${keyword}&category=${category}`
+      );
+      dispatch({ type: GET_PRODUCT_SUCCESS, payload: data.product });
+    } catch (error) {
+      dispatch({ type: GET_PRODUCT_FAIL, payload: error });
+    }
+  };
 
 // Get user specific Products
 export const getUserProducts = (user_id) => async (dispatch) => {
   try {
     dispatch({ type: GET_USER_PRODUCT_REQUEST });
-    const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.get(
+    const { data } = await fetcher(
       `http://localhost:5000/api/v1/me/product`,
-      user_id,
-      config
+      user_id
     );
     dispatch({ type: GET_USER_PRODUCT_SUCCESS, payload: data.product });
   } catch (error) {
@@ -97,6 +99,7 @@ export const getUserProducts = (user_id) => async (dispatch) => {
       type: GET_USER_PRODUCT_FAIL,
       payload: error.response.data.message,
     });
+    console.log(error);
   }
 };
 
@@ -104,9 +107,9 @@ export const getUserProducts = (user_id) => async (dispatch) => {
 export const getSingleProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_PRODUCT_REQUEST });
-    const config = { headers: { "Content-Type": "application/json" } };
+    // const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.get(
+    const { data } = await fetcher(
       `http://localhost:5000/api/v1/product/${id}`
     );
     dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: data.product });
@@ -149,7 +152,6 @@ export const getBid = (id) => async (dispatch) => {
   }
 };
 
-
 //Accept Reject Bid
 export const rejectBid = (id, bidId) => async (dispatch) => {
   try {
@@ -174,7 +176,7 @@ export const editBid = (id, bidId, amount) => async (dispatch) => {
     const { data } = await axios.put(
       `http://localhost:5000/api/v1/product/${id}/bid/${bidId}/edit`,
       config,
-      {amount : amount}
+      { amount: amount }
     );
     dispatch({ type: EDIT_BID_SUCCESS, payload: data });
   } catch (error) {
@@ -196,7 +198,6 @@ export const acceptBid = (id, buyerId) => async (dispatch) => {
     dispatch({ type: ACCEPT_BID_FAIL, payload: error.response.data.message });
   }
 };
-
 
 export const addComment = (comment, id) => async (dispatch) => {
   try {
@@ -234,7 +235,9 @@ export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
 
-    const { data } = await axios.delete(`http://localhost:5000/api/v1/product/${id}`);
+    const { data } = await axios.delete(
+      `http://localhost:5000/api/v1/product/${id}`
+    );
 
     dispatch({
       type: DELETE_PRODUCT_SUCCESS,
@@ -247,7 +250,6 @@ export const deleteProduct = (id) => async (dispatch) => {
     });
   }
 };
-
 
 // Update Product
 export const updateProduct = (id, productData) => async (dispatch) => {
@@ -276,9 +278,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
   }
 };
 
-
 // Verify Product
-
 
 export const verifyProduct = (id) => async (dispatch) => {
   try {
@@ -291,6 +291,9 @@ export const verifyProduct = (id) => async (dispatch) => {
     );
     dispatch({ type: VERIFY_PRODUCT_SUCCESS, payload: data.success });
   } catch (error) {
-    dispatch({ type: VERIFY_PRODUCT_FAIL, payload: error.response.data.message });
+    dispatch({
+      type: VERIFY_PRODUCT_FAIL,
+      payload: error.response.data.message,
+    });
   }
 };

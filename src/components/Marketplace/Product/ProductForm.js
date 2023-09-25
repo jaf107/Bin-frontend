@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../../redux/actions/productActions";
 import { useRef } from "react";
 import "./ProductForm.css";
@@ -18,6 +18,7 @@ const ProductForm = () => {
     date_of_purchase: "",
     purchase_price: "",
     product_type: "",
+    address: "",
   });
 
   const {
@@ -29,12 +30,15 @@ const ProductForm = () => {
     date_of_purchase,
     purchase_price,
     product_type,
+    address,
   } = product;
 
-  const [address, setAddress] = useState();
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
-
+  const { user } = useSelector((state) => state.user);
+  // console.log(user);
+  const { id } = user;
+  // console.log(id);
   const productSubmit = (e) => {
     e.preventDefault();
     const productForm = new FormData();
@@ -47,7 +51,8 @@ const ProductForm = () => {
     productForm.set("purchase_price", purchase_price);
     productForm.set("product_type", product_type.toLowerCase());
     productForm.set("address", address);
-
+    productForm.set("user", id);
+    // console.log(user.id);
     images.forEach((image) => {
       productForm.append("images", image);
     });
@@ -87,9 +92,7 @@ const ProductForm = () => {
       reader.readAsDataURL(file);
     });
   };
-  const handleAddress = (langValue) => {
-    setAddress(langValue);
-  };
+
   // console.log(address)
 
   return (
@@ -309,12 +312,12 @@ const ProductForm = () => {
                   <i className="fa fa-map-marker"></i>
                 </div>
                 <input
-                  id="location"
-                  name="location"
+                  id="address"
+                  name="address"
                   className="form-control"
                   required
                   type="text"
-                  placeholder="Enter Location here"
+                  placeholder="Enter Address here"
                   value={address}
                   onChange={productDataChange}
                 />
