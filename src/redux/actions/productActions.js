@@ -51,9 +51,10 @@ axios.defaults.withCredentials = true;
 export const addProduct = (productData) => async (dispatch) => {
   try {
     dispatch({ type: ADD_PRODUCT_REQUEST });
-    console.log(productData);
+
     const data = await fetcher(
-      `http://localhost:5000/api/v1/product/new`,
+      `http://127.0.0.1:5000/api/v1/product/new`,
+      "POST",
       productData
     );
 
@@ -76,7 +77,8 @@ export const getProducts =
       // const config = { headers: { "Content-Type": "application/json" } };
 
       const { data } = await fetcher(
-        `http://localhost:5000/api/v1/product?keyword=${keyword}&category=${category}`
+        `http://localhost:5000/api/v1/product?keyword=${keyword}&category=${category}`,
+        "GET"
       );
       dispatch({ type: GET_PRODUCT_SUCCESS, payload: data.product });
     } catch (error) {

@@ -13,6 +13,8 @@ function UserAccount() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, isAuthenticated } = useSelector((state) => state.user);
+  console.log(user);
+
   useEffect(() => {
     if (isAuthenticated === false) {
       navigate("/login");
@@ -22,15 +24,22 @@ function UserAccount() {
   return (
     <div className=" userAccount">
       <Header />
-      <div class="container bootstrap snippets bootdey">
+      <div class="container mb-4">
         {user && (
           <div class="row">
-            <div class="profile-nav col-md-3 mt-3">
+            <div class="profile-nav col-md-3 mt-3  shadow">
               <div class="panel">
                 <div class="user-heading round">
-                  <a href="#">{/* <img src={user.avatar.url} alt="" /> */}</a>
-                  <h1>{user.name}</h1>
-                  <p>{user.email}</p>
+                  {/* <img src="/profile.png" alt="" /> */}
+                  <i class="fa-solid fa-user profile_img p-3 mb-2"></i>
+
+                  {/* {user.avatar.url && <img src={user.avatar.url} alt="" />}
+                  {!user.avatar.url && (
+                    <img src="/Profile.png" alt="Default Image" />
+                  )} */}
+
+                  <h4>{user.username}</h4>
+                  <h6>{user.email}</h6>
                 </div>
 
                 <ul
@@ -41,7 +50,7 @@ function UserAccount() {
                 >
                   <li class="  p-3">
                     <a
-                      className="text-decoration-none nav-link active"
+                      className="text-decoration nav-link active"
                       id="v-pills-profile-tab"
                       data-bs-toggle="pill"
                       data-bs-target="#v-pills-profile"
@@ -108,7 +117,7 @@ function UserAccount() {
             </div>
             <div class="col-md-9 tab-content mt-3" id="v-pills-tabContent">
               <div
-                class="tab-pane fade show active "
+                class="tab-pane fade show active  user_nav_pills"
                 id="v-pills-profile"
                 role="tabpanel"
                 aria-labelledby="v-pills-profile-tab"

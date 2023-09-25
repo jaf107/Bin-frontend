@@ -27,52 +27,29 @@ const MyProducts = () => {
     <ProductDetails product={product} index={index}></ProductDetails>
   ));
 
-  const product_bid_list = products?.map((product, index) => (
-    <>
-      {product.bids.some((item) => user._id === item.buyer_id) &&
-        !product.buyer && (
-          <ProductBidDetails
-            product={product}
-            index={index}
-          ></ProductBidDetails>
-        )}
-    </>
-  ));
   return (
     <div>
-      <div className="">
-        <h2>My Products</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Product Name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Date</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>{productList}</tbody>
-        </table>
-        <br />
-        <br />
-        <h2>Bid Products</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Product Name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Bid Amount</th>
-              <th scope="col">Date</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>{product_bid_list}</tbody>
-        </table>
+      <div className="myproducts_box shadow">
+        <div class="bio-graph-heading ">My Products</div>
+        <div class="panel-body bio-graph-info mb-2 p-2"></div>
+
+        <div className="p-3 m-2">
+          <h2>My Products</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Date</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>{productList}</tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

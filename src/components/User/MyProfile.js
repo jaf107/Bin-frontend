@@ -1,38 +1,51 @@
 import OTPVerify from "./OTPVerify";
-
+import "./MyProfile.css";
 
 function MyProfile(props) {
-    const user = props.user_data
+  const user = props.user_data;
   return (
-    <div>
+    <div className="shadow p-1 ">
       <div class="panel">
-        <div class="bio-graph-heading">General User Profile</div>
-        <div class="panel-body bio-graph-info m-5">
+        <div class="bio-graph-heading ">General User Profile</div>
+        <div class="panel-body bio-graph-info m-4 p-2">
           <div class="row">
-            <div class="bio-row">
-              <p>
-                <span> Name </span>: {user.name}
+            <div class="col-8 details-col">
+              <div class="bio-row ">
+                <p className="bio-attribute">
+                  <span>Name </span>: {user.name}
+                </p>
+              </div>
 
-              </p>
+              <div class="bio-row ">
+                <p className="bio-attribute">
+                  <span>Email</span>: {user.email}
+                </p>
+              </div>
+              <div class="bio-row">
+                <p className="bio-attribute">
+                  <span>Mobile</span>: (+88) {user.phone}
+                </p>
+              </div>
+              <div class="bio-row">
+                <p className="bio-attribute">
+                  <span>Address</span>: {user.address}
+                </p>
+              </div>
+              <div class="bio-row">
+                <p className="bio-attribute roles">
+                  <span>Roles</span>:{" "}
+                  {user.roles.map((role) => role.name).join(", ")}
+                </p>
+              </div>
             </div>
-            <div class="bio-row">
-              <p>
-                <span>Email </span>: {user.email}
-              </p>
-            </div>
-
-            <div class="bio-row">
-              <p>
-                <span>Mobile </span>: (+88) {user.phone}
-                { user.isVerified &&<i class="fa-solid fa-circle-check text-success "></i>}
-              </p>
-              { !user.isVerified && <OTPVerify number={"+88" + user.phone}></OTPVerify>}
+            <div class="col-3 image-col">
+              <img src="/Profile.png" alt="User Profile" />
             </div>
           </div>
         </div>
       </div>
       <div>
-        <div class="row">
+        {/* <div class="row">
           <div class="col-md-6">
             <div class="panel card">
               <div class="panel-body">
@@ -137,10 +150,10 @@ function MyProfile(props) {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
 }
 
-export default MyProfile
+export default MyProfile;

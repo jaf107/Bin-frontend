@@ -15,6 +15,7 @@ import Search from "../Marketplace/Search";
 const Marketplace = () => {
   const dispatch = useDispatch();
   const { keyword } = useParams();
+  console.log(keyword);
   const { products } = useSelector((state) => state.products);
   const { error } = useSelector((state) => state.favorites);
   const alert = useAlert();

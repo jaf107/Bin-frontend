@@ -16,8 +16,8 @@ body {
 }
 
 .profile-nav .user-heading {
-    background-color: rgb(32, 193, 189, .8);
-    color: #fff;
+  background-color: rgb(32, 193, 189, 0.8);
+  color: #fff;
   border-radius: 4px 4px 0 0;
   -webkit-border-radius: 4px 4px 0 0;
   padding: 30px;
@@ -36,12 +36,6 @@ body {
   height: 112px;
   border-radius: 50%;
   -webkit-border-radius: 50%;
-}
-
-.profile-nav .user-heading h1 {
-  font-size: 22px;
-  font-weight: 300;
-  margin-bottom: 5px;
 }
 
 .profile-nav .user-heading p {
@@ -112,8 +106,8 @@ body {
 }
 
 .bio-graph-heading {
-    background-color: rgb(32, 193, 189);
-    color: #fff;
+  background-color: rgb(32, 193, 189);
+  color: #fff;
   text-align: center;
   font-style: italic;
   padding: 40px 110px;
@@ -408,11 +402,15 @@ ul.summary-list > li:last-child {
   background: none;
 }
 
-
-.userAccount .active{
+.userAccount .active {
   background-color: white !important;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
   color: black;
+}
+
+.user_nav_pills {
+  font-weight: bold;
 }

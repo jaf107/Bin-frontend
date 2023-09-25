@@ -16,25 +16,28 @@ const Favorites = (props) => {
   const dispatch = useDispatch();
   const products = [
     {
+      product_id: "1",
       name: "Laptop",
       price: "350",
       quantity: 3,
       date: "12/06/1999",
     },
     {
-      name: "Ganja",
+      product_id: "2",
+      name: "Mobile",
       price: "350",
       quantity: 3,
       date: "12/06/1999",
     },
     {
-      name: "Pot",
+      product_id: "3",
+      name: "Book",
       price: "350",
       quantity: 3,
       date: "12/06/1999",
     },
   ];
-  const favoritesList = favorites?.map((favorite, index) => (
+  const favoritesList = products?.map((favorite, index) => (
     <FavoriteDetails
       favorite={favorite.product_id}
       index={index}
@@ -42,21 +45,26 @@ const Favorites = (props) => {
   ));
   return (
     <div>
-      <div className="">
-        <h2>Favorite Products</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Product Name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Date</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>{favoritesList}</tbody>
-        </table>
+      <div className="shadow fav_box">
+        <div class="bio-graph-heading ">My Favorite Products</div>
+        <div class="panel-body bio-graph-info m-2 p-2">
+          <div className="p-3 m-2">
+            <h2>Favorite Products</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Delete</th>
+                </tr>
+              </thead>
+              <tbody>{favoritesList}</tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -42,9 +42,7 @@ function Login({ history, location }) {
     }
 
     if (isAuthenticated) {
-      if (loginUsername === "jiteshsureka@gmail.com")
-        navigate("/admin/dashboard");
-      else navigate("/");
+      navigate("/");
     }
   }, [dispatch, error, alert, navigate, isAuthenticated, loginUsername]);
 
