@@ -27,7 +27,7 @@ const getAuthorizationHeaderConfig = (options) => {
     : null;
 
   if (config) {
-    config.headers.assign(options);
+    config.headers = Object.assign(config.headers, options);
   } else {
     config = {
       headers: {
@@ -35,7 +35,6 @@ const getAuthorizationHeaderConfig = (options) => {
       },
     };
   }
-
   return config;
 };
 
@@ -48,7 +47,9 @@ const translateBody = (body) => {
 };
 
 const getReq = async (url, options) => {
+  console.log("in get req");
   const authConfig = getAuthorizationHeaderConfig(options);
+  console.log(authConfig);
   const { data } = await axios.get(url, authConfig);
   return data;
 };

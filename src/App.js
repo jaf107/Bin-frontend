@@ -34,14 +34,18 @@ import ObjectDetect from "./components/Marketplace/ObjectDetect";
 import ForgotPassword from "./components/User/ForgotPassword";
 import ResetPassword from "./components/User/ResetPassword";
 import ObjectDetection from "./components/object-detection/ObjectDetection";
+import { useDispatch } from "react-redux";
 // import { useLoadScript } from "@react-google-maps/api";
 function App() {
   // const { isLoaded } = useLoadScript({
   //   googleMapsApiKey: "AIzaSyAcSo1pAkX6PtA4ZGMvzgABMNgSSpQJFz4",
   // });
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
+    console.log("Loading User");
+    dispatch(loadUser());
+  }, [dispatch]);
   return (
     <div className="App">
       {/* <Header/> */}

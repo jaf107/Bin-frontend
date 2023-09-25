@@ -116,11 +116,14 @@ export const loadUser = () => async (dispatch) => {
     // console.log(user.accessToken);
 
     let data = await fetcher(`http://localhost:5000/api/v1/me`, "GET");
+    console.log("In loadUser");
+    console.log(data);
     // const { data } = await axios.get(`http://localhost:5000/api/v1/me`);
 
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
   } catch (error) {
-    // dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
+    dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
+    console.error(error);
   }
 };
 
@@ -130,7 +133,6 @@ export const logout = () => async (dispatch) => {
     // await axios.get(`http://localhost:5000/api/v1/logout`);
 
     localStorage.removeItem("user_session");
-    
 
     dispatch({ type: LOGOUT_SUCCESS });
   } catch (error) {
