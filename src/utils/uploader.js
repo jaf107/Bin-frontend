@@ -5,7 +5,7 @@ const uploader = async (file) => {
   const headers = {
     "Content-Type": "multipart/form-data",
   };
-  const body = getFormData();
+  const body = getFormData(file, sign);
 
   const response = await fetcher(
     `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/auto/upload`,
