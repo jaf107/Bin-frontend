@@ -414,3 +414,7 @@ ul.summary-list > li:last-child {
 .user_nav_pills {
   font-weight: bold;
 }
+
+.profile_img i {
+  font-size: 30px;
+}

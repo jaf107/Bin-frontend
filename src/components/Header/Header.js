@@ -113,11 +113,8 @@ function Header() {
                 </Link>
               </li>
               {user && user.roles.includes("ROLE_ADMIN") && (
-                <li class="nav-item p-2 pt-3">
-                  <Link
-                    class="nav-link  text-white fw-bold"
-                    to="/admin/dashboard"
-                  >
+                <li class="nav-item p-2 mt-2">
+                  <Link class="nav-link admin_button" to="/admin/dashboard">
                     <i class="fa-brands fa-adn fs-4"></i>
                   </Link>
                 </li>

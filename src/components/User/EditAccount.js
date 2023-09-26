@@ -136,7 +136,7 @@ function EditAccount({ location }) {
                   src={avatarPreview}
                   alt="Avatar Preview"
                   className=" text-center"
-                  width={300}
+                  width={200}
                 />
                 <br />
                 <label htmlFor="avatar" className="file-input-label">

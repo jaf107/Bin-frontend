@@ -13,7 +13,7 @@ function UserAccount() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, isAuthenticated } = useSelector((state) => state.user);
-  console.log(user);
+  // console.log(user);
 
   useEffect(() => {
     if (isAuthenticated === false) {

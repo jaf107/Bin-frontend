@@ -39,7 +39,11 @@ function MyProfile(props) {
               </div>
             </div>
             <div class="col-3 image-col">
-              <img src="/Profile.png" alt="User Profile" />
+              <img
+                src="/Profile.png"
+                className="dashboard_profile_img"
+                alt="User Profile"
+              />
             </div>
           </div>
         </div>

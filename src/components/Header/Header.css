@@ -36,3 +36,7 @@
 .ai_button a {
   color: white !important;
 }
+
+.admin_button {
+  font-weight: bold;
+}
