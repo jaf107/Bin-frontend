@@ -35,7 +35,7 @@ const getAuthorizationHeaderConfig = (options) => {
       },
     };
   }
-  console.log(config);
+  // console.log(config);
   return config;
 };
 

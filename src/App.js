@@ -81,9 +81,9 @@ function App() {
             path="/admin/dashboard"
             exact
             element={
-              <ProtectedRoute isAdmin={true}>
-                <Dashboard></Dashboard>
-              </ProtectedRoute>
+              // <ProtectedRoute isAdmin={true}>
+              <Dashboard></Dashboard>
+              // </ProtectedRoute>
             }
           ></Route>
           <Route

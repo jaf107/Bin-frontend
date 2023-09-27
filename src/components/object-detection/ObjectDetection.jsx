@@ -48,7 +48,7 @@ function ObjectDetection() {
               id="input-image"
               src={image}
               alt="Uploaded"
-              width="300"
+              width="600"
               height="auto"
             />
           </div>
