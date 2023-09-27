@@ -139,15 +139,14 @@ export const updateProfile = (userData) => async (dispatch) => {
 
     // Handel Image upload
     if (userData.has("avatar")) {
-      const file = userData.get("avtar");
+      const file = userData.get("avatar");
       const uniqueUserId = JSON.parse(
         localStorage.getItem("user_session")
       ).username;
 
-      console.log(file);
-
       if (file) {
         const response = await uploader(file, "user", uniqueUserId);
+        console.log(response);
       }
     }
 

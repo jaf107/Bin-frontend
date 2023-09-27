@@ -37,7 +37,7 @@ function EditAccount({ location }) {
     if (name !== "") myForm.set("name", name);
     if (password !== "") myForm.set("password", password);
     if (phone !== "") myForm.set("phone", phone);
-    if (avatar !== "") myForm.set("avatar", avatar);
+    myForm.set("avatar", avatar);
     if (address !== "") myForm.set("address", address);
 
     dispatch(updateProfile(myForm));

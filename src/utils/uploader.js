@@ -1,30 +1,29 @@
+import axios from "axios";
 import fetcher from "./fetcher";
 
 const cloud_name = "dljep9qgw";
 const cloud_api_key = "485977825684594";
 
 const uploader = async (file, type, uniqueId) => {
-  console.log(cloud_name, cloud_api_key);
+  try {
+    const sign = await getSignature();
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      withCredentials: false,
+    };
+    const body = getFormData(file, sign);
 
-  const sign = await getSignature();
-  const headers = {
-    "Content-Type": "multipart/form-data",
-  };
-  const body = getFormData(file, sign);
-
-  const cloudinaryResponse = await fetcher(
-    `https://api.cloudinary.com/v1_1/${cloud_name}/auto/upload`,
-    "POST",
-    body,
-    headers
-  );
-
-  const res = await updateImageUrl(type, uniqueId, cloudinaryResponse);
-
-  if (res.status === 200) {
+    const cloudinaryResponse = await axios.post(
+      `https://api.cloudinary.com/v1_1/${cloud_name}/auto/upload`,
+      body,
+      config
+    );
+    const res = await updateImageUrl(type, uniqueId, cloudinaryResponse.data);
     return res;
-  } else {
-    return "Something went wrong while uploading file";
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -50,6 +49,7 @@ const updateImageUrl = async (
   queryObject,
   cloudinaryResponse
 ) => {
+  console.log(cloudinaryResponse);
   const body = {
     "public-id": cloudinaryResponse.public_id,
     "image-url": cloudinaryResponse.secure_url,
@@ -57,8 +57,10 @@ const updateImageUrl = async (
     "query-param": queryObject,
   };
 
+  console.log(body);
+
   const response = await fetcher(
-    "http://localhost:5000/api/v1/file/upload-signatue",
+    "http://localhost:5000/api/v1/file/update-url",
     "POST",
     body
   );
