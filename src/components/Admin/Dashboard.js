@@ -1,6 +1,6 @@
 import "./Dashboard.css";
 import { Link, useNavigate } from "react-router-dom";
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors } from "../../redux/actions/userActions";
 import { logout } from "../../redux/actions/userActions";
@@ -16,8 +16,22 @@ import Footer from "../Footer/Footer";
 import { getOrders } from "../../redux/actions/orderActions";
 function Dashboard() {
   const user = {
-    name: "Jitesh",
+    name: "Admin",
   };
+  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+  const updateTime = () => {
+    setCurrentDateTime(new Date());
+  };
+
+  // Update the time every second
+  useEffect(() => {
+    const intervalId = setInterval(updateTime, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  // Format date and time
+  const formattedTime = currentDateTime.toLocaleTimeString();
+  const formattedDate = currentDateTime.toLocaleDateString();
 
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -43,14 +57,18 @@ function Dashboard() {
 
   return (
     <div className="admin-dash ">
-      <nav class="navbar navbar-light bg-light p-3">
-        <div class="container-fluid">
+      <nav class="navbar navbar-light  shadow p-2 m-2 mt-3">
+        <div class="container-fluid ">
           <a class="navbar-brand">ADMIN PANEL</a>
-          <div class="d-flex btn-group">
-            <button class="btn btn-primary m-1" onClick={toHome}>
+          <div class="d-flex btn-group align-items-center justify-content-center">
+            <div className="container m-2">
+              <h4 className="time">{formattedTime}</h4>
+              <h5 className="date">{formattedDate}</h5>
+            </div>
+            <button className="btn btn-custom m-1" onClick={toHome}>
               Home
             </button>
-            <button class="btn btn-danger m-1" onClick={logoutUser}>
+            <button className="btn btn-custom-danger m-1" onClick={logoutUser}>
               Logout
             </button>
           </div>
@@ -58,19 +76,19 @@ function Dashboard() {
       </nav>
       <div class="">
         <div class="row">
-          <div class="profile-nav col-md-3 bg-light">
+          <div class="profile-nav col-md-3 bg-light m-2">
             <div class="panel">
-              <div class="user-heading round">
+              <div class="user-heading panel-header">
                 <h1>Mr. Bin</h1>
               </div>
 
               <ul
-                className="nav nav-stacked flex-column"
+                className="nav nav-stacked flex-column  justify-content-center"
                 id="v-pills-tab"
                 role="tablist"
                 aria-orientation="vertical"
               >
-                <li className="nav-item  p-3">
+                <li className="nav-item custom-nav-item  p-3">
                   <a
                     className="text-decoration-none nav-link active"
                     id="v-pills-user-tab"
@@ -85,7 +103,7 @@ function Dashboard() {
                     Users
                   </a>
                 </li>
-                <li className="nav-item  p-3">
+                <li className="nav-item custom-nav-item p-3">
                   <a
                     className="text-decoration-none nav-link"
                     id="v-pills-products-tab"
@@ -98,13 +116,11 @@ function Dashboard() {
                   >
                     <i class="fa fa-bag-shopping"></i>
                     Products
-                    <span class="label label-warning pull-right r-activity">
-                      {/* {products.size} */}
-                    </span>
+                    <span class="label label-warning pull-right r-activity"></span>
                   </a>
                 </li>
 
-                <li className="nav-item  p-3">
+                <li className="nav-item custom-nav-item p-3">
                   <a
                     className="text-decoration-none nav-link"
                     id="v-pills-recycler-tab"
@@ -119,7 +135,7 @@ function Dashboard() {
                     Recyclers
                   </a>
                 </li>
-                <li className="nav-item  p-3">
+                <li className="nav-item custom-nav-item p-3">
                   <a
                     className="text-decoration-none nav-link"
                     id="v-pills-organization-tab"
@@ -134,7 +150,7 @@ function Dashboard() {
                     Organizations
                   </a>
                 </li>
-                <li className="nav-item  p-3">
+                <li className="nav-item custom-nav-item p-3">
                   <a
                     className="text-decoration-none nav-link"
                     id="v-pills-order-recyclers-tab"
@@ -149,7 +165,7 @@ function Dashboard() {
                     Recycle Orders
                   </a>
                 </li>
-                <li className="nav-item  p-3">
+                <li className="nav-item custom-nav-item p-3">
                   <a
                     className="text-decoration-none nav-link"
                     id="v-pills-order-donation-tab"
@@ -169,13 +185,6 @@ function Dashboard() {
           </div>
 
           <div class="col-md-9 tab-content" id="v-pills-tabContent">
-            <div className="container p-3 m-3">
-              <h4>
-                Date : {new Date().getDate()} - {new Date().getMonth() + 1}-{" "}
-                {new Date().getFullYear()}
-              </h4>
-            </div>
-
             <div
               className="tab-pane fade show active "
               id="v-pills-user"

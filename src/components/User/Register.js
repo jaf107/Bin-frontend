@@ -16,13 +16,14 @@ function Register({ location }) {
     email: "",
     password: "",
     phone: "",
+    address: "",
   });
 
-  const { name, username, email, password, phone } = user;
+  const { name, username, email, password, phone, address } = user;
   const [confirmPassword, setConfirmPassword] = useState("");
   const [avatar, setAvatar] = useState("/Profile.png");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
-  const [address, setAddress] = useState();
+
   const validateEmail = (email) => {
     return String(email)
       .toLowerCase()
@@ -61,13 +62,11 @@ function Register({ location }) {
     myForm.set("password", password);
     myForm.set("phone", phone);
     // myForm.set("avatar", avatar);
-    // myForm.set("address", address);
+    myForm.set("address", address);
     dispatch(register(myForm));
     navigate("/login");
   };
-  const handleAddress = (langValue) => {
-    setAddress(langValue);
-  };
+
   const registerDataChange = (e) => {
     if (e.target.name === "avatar") {
       const reader = new FileReader();
@@ -162,10 +161,21 @@ function Register({ location }) {
                   onChange={registerDataChange}
                 />
               </div>
+              <div className="form-group pb-3">
+                <input
+                  type="text"
+                  className=" form-control"
+                  placeholder="Address"
+                  name="address"
+                  value={address}
+                  onChange={registerDataChange}
+                />
+              </div>
               {/* <GoogleMap
                 className="form-group mb-4"
                 onSetAddress={handleAddress}
               ></GoogleMap> */}
+
               <div className="form-group pb-3">
                 <input
                   type="tel"

@@ -1,3 +1,4 @@
+import fetcher from "../../utils/fetcher";
 import {
   GET_RECYCLER_FAIL,
   GET_RECYCLER_REQUEST,
@@ -10,19 +11,18 @@ import {
   CREATE_RECYCLER_FAIL,
   DELETE_RECYCLER_REQUEST,
   DELETE_RECYCLER_SUCCESS,
-  DELETE_RECYCLER_FAIL
-} from '../constants/recyclerConstants'
+  DELETE_RECYCLER_FAIL,
+} from "../constants/recyclerConstants";
 const axios = require("axios");
 axios.defaults.withCredentials = true;
-
 
 // Get all Recyclers
 export const getRecyclers = () => async (dispatch) => {
   try {
     dispatch({ type: GET_RECYCLER_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:5000/api/v1/recyclers`);
-    dispatch({ type: GET_RECYCLER_SUCCESS, payload: data.recycler });
+    const data = await fetcher(`http://localhost:5000/api/v1/recyclers`, "GET");
+    dispatch({ type: GET_RECYCLER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: GET_RECYCLER_FAIL, payload: error.response.data.message });
   }
@@ -34,11 +34,19 @@ export const addRecycler = (recyclerData) => async (dispatch) => {
     dispatch({ type: CREATE_RECYCLER_REQUEST });
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-    const { data } = await axios.post(`http://localhost:5000/api/v1/recycler/new`, recyclerData, config);
+    const { data } = await fetcher(
+      `http://localhost:5000/api/v1/recycler/new`,
+      "POST",
+      recyclerData,
+      config
+    );
 
     dispatch({ type: CREATE_RECYCLER_SUCCESS, payload: data.recyclers });
   } catch (error) {
-    dispatch({ type: CREATE_RECYCLER_FAIL, payload: error.response.data.message });
+    dispatch({
+      type: CREATE_RECYCLER_FAIL,
+      payload: error.response.data.message,
+    });
   }
 };
 
@@ -46,14 +54,17 @@ export const deleteRecycler = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_RECYCLER_REQUEST });
 
-    const { data } = await axios.delete(`http://localhost:5000/api/v1/recycler/${id}`);
+    const { data } = await axios.delete(
+      `http://localhost:5000/api/v1/recycler/${id}`
+    );
     dispatch({ type: DELETE_RECYCLER_SUCCESS, payload: data.recyclers });
   } catch (error) {
-    dispatch({ type: DELETE_RECYCLER_FAIL, payload: error.response.data.message });
+    dispatch({
+      type: DELETE_RECYCLER_FAIL,
+      payload: error.response.data.message,
+    });
   }
 };
-
-
 
 // Get single recycler details
 export const getSingleRecycler = (id) => async (dispatch) => {
@@ -63,10 +74,12 @@ export const getSingleRecycler = (id) => async (dispatch) => {
 
     const { data } = await axios.get(
       `http://localhost:5000/api/v1/recycler/${id}`
-
     );
     dispatch({ type: GET_SINGLE_RECYCLER_SUCCESS, payload: data.recycler });
   } catch (error) {
-    dispatch({ type: GET_SINGLE_RECYCLER_FAIL, payload: error.response.data.message });
+    dispatch({
+      type: GET_SINGLE_RECYCLER_FAIL,
+      payload: error.response.data.message,
+    });
   }
 };
