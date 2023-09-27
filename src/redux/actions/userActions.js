@@ -54,6 +54,7 @@ import {
 
 import axios from "axios";
 import fetcher from "../../utils/fetcher";
+import uploader from "../../utils/uploader";
 
 axios.defaults.withCredentials = true;
 
@@ -83,6 +84,8 @@ export const login = (username, password) => async (dispatch) => {
 export const register = (userData) => async (dispatch) => {
   try {
     dispatch({ type: REGISTER_USER_REQUEST });
+
+    const avatar = userData.get("avatar");
 
     const data = await fetcher(
       `http://localhost:5000/api/v1/register`,
@@ -133,6 +136,20 @@ export const updateProfile = (userData) => async (dispatch) => {
     dispatch({ type: UPDATE_PROFILE_REQUEST });
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
+
+    // Handel Image upload
+    if (userData.has("avatar")) {
+      const file = userData.get("avtar");
+      const uniqueUserId = JSON.parse(
+        localStorage.getItem("user_session")
+      ).username;
+
+      console.log(file);
+
+      if (file) {
+        const response = await uploader(file, "user", uniqueUserId);
+      }
+    }
 
     const { data } = await axios.put(
       "http://localhost:5000/api/v1/me/update",
