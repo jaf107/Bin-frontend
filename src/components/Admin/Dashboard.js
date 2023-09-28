@@ -78,7 +78,7 @@ function Dashboard() {
         <div class="row">
           <div class="profile-nav col-md-3 bg-light m-2">
             <div class="panel">
-              <div class="user-heading panel-header">
+              <div class="user-heading ">
                 <h1>Mr. Bin</h1>
               </div>
 
@@ -184,7 +184,7 @@ function Dashboard() {
             </div>
           </div>
 
-          <div class="col-md-9 tab-content" id="v-pills-tabContent">
+          <div class="col-md-8 tab-content m-2" id="v-pills-tabContent">
             <div
               className="tab-pane fade show active "
               id="v-pills-user"

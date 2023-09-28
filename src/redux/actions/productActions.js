@@ -95,11 +95,11 @@ export const getProducts =
       dispatch({ type: GET_PRODUCT_REQUEST });
       // const config = { headers: { "Content-Type": "application/json" } };
 
-      const { data } = await fetcher(
+      const data = await fetcher(
         `http://localhost:5000/api/v1/products?keyword=${keyword}&category=${category}`,
         "GET"
       );
-      dispatch({ type: GET_PRODUCT_SUCCESS, payload: data.product });
+      dispatch({ type: GET_PRODUCT_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: GET_PRODUCT_FAIL, payload: error });
     }

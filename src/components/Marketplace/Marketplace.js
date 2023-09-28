@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect } from "react";
 import Header from "../Header/Header";
 import { useNavigate, useParams } from "react-router-dom";
@@ -15,8 +16,9 @@ import Search from "../Marketplace/Search";
 const Marketplace = () => {
   const dispatch = useDispatch();
   const { keyword } = useParams();
-  console.log(keyword);
+  // console.log(keyword);
   const { products } = useSelector((state) => state.products);
+  console.log(products);
   const { error } = useSelector((state) => state.favorites);
   const alert = useAlert();
   useEffect(() => {
@@ -49,31 +51,40 @@ const Marketplace = () => {
                 <Search></Search>
               </div>
 
-              <div className=" col-md-9">
+              <div className=" col">
                 <div className="">
                   {products?.map((product) => (
                     <>
                       {!product.buyer &&
-                        product.product_type === "marketplace" && (
+                        product.productType === "marketplace" && (
                           <span className="separate-card ">
                             <div className="card">
                               <Link to={`/product/${product._id}`}>
                                 <img
                                   className="card-img-top"
-                                  src={product.images[0].url}
+                                  src={"/Profile.png "}
                                   alt="Card image cap"
                                 />
                               </Link>
+
+                              {/* {(product.images).length >1 ? (<Carousel images={product.images}/>):(<img
+                                className="card-img-top"
+                                src={product.images[0]?.url || ""}
+                                alt="Card image cap"/>)} */}
+
                               <div className="card-body bg-light">
-                                <h6 className="card-title center">
-                                  {product.name}
-                                </h6>
-                                <p className="card-text p-2">
-                                  {product.description}{" "}
-                                </p>
-                                <p className="card-text text-center p-2">
-                                  Price: {product.purchase_price}
-                                </p>
+                                <div>
+                                  <h6 className="card-title center">
+                                    {product.name}
+                                  </h6>
+                                  <p className="card-text p-2">
+                                    {product.description}{" "}
+                                  </p>
+                                  <p className="card-text text-center p-2">
+                                    Price: {product.purchase_price}
+                                  </p>
+                                  <div />
+                                </div>
                                 <div className="d-flex">
                                   <div className="card-button border-0 btn btn-success">
                                     Buy
