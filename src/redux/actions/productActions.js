@@ -96,7 +96,7 @@ export const getProducts =
       // const config = { headers: { "Content-Type": "application/json" } };
 
       const { data } = await fetcher(
-        `http://localhost:5000/api/v1/product?keyword=${keyword}&category=${category}`,
+        `http://localhost:5000/api/v1/products?keyword=${keyword}&category=${category}`,
         "GET"
       );
       dispatch({ type: GET_PRODUCT_SUCCESS, payload: data.product });
