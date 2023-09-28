@@ -52,11 +52,28 @@ export const addProduct = (productData) => async (dispatch) => {
   try {
     dispatch({ type: ADD_PRODUCT_REQUEST });
 
+    // upload product image
+    const images = productData.get("images");
+    const productReqBody = {
+      name: productData.get("name"),
+      category: productData.get("category"),
+      quantity: productData.get("quantity"),
+      condition: productData.get("condition"),
+      description: productData.get("description"),
+      dateOfPurchase: productData.get("dateOfPurchase"),
+      purchasePrice: productData.get("purchasePrice"),
+      productType: productData.get("productType"),
+      address: productData.get("address"),
+      userId: productData.get("userId"),
+    };
+
     const data = await fetcher(
       `http://127.0.0.1:5000/api/v1/product/new`,
       "POST",
-      productData
+      productReqBody
     );
+
+    console.log("product data add response: ", data);
 
     dispatch({ type: ADD_PRODUCT_SUCCESS });
   } catch (error) {
@@ -64,7 +81,7 @@ export const addProduct = (productData) => async (dispatch) => {
       type: ADD_PRODUCT_FAIL,
       payload: error.response.data.message,
     });
-    console.log(error);
+    console.error(error);
   }
 };
 
