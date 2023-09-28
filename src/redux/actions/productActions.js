@@ -44,6 +44,7 @@ import {
 } from "../constants/productConstants";
 import { VERIFY_USER_REQUEST } from "../constants/userConstants";
 import fetcher from "../../utils/fetcher";
+import uploader from "../../utils/uploader";
 
 const axios = require("axios");
 axios.defaults.withCredentials = true;
@@ -53,7 +54,7 @@ export const addProduct = (productData) => async (dispatch) => {
     dispatch({ type: ADD_PRODUCT_REQUEST });
 
     // upload product image
-    const images = productData.get("images");
+    const images = productData.getAll("images");
     const productReqBody = {
       name: productData.get("name"),
       category: productData.get("category"),
@@ -73,7 +74,8 @@ export const addProduct = (productData) => async (dispatch) => {
       productReqBody
     );
 
-    console.log("product data add response: ", data);
+    const res = await uploader(images, "product", data.id);
+    console.log("product data add response: ", res);
 
     dispatch({ type: ADD_PRODUCT_SUCCESS });
   } catch (error) {

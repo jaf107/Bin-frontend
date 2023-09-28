@@ -13,15 +13,41 @@ const uploader = async (file, type, uniqueId) => {
       },
       withCredentials: false,
     };
-    const body = getFormData(file, sign);
 
-    const cloudinaryResponse = await axios.post(
-      `https://api.cloudinary.com/v1_1/${cloud_name}/auto/upload`,
-      body,
-      config
-    );
-    const res = await updateImageUrl(type, uniqueId, cloudinaryResponse.data);
-    return res;
+    if (Array.isArray(file)) {
+      // Bulk upload
+      const urls = [];
+
+      for (const f of file) {
+        const body = getFormData(f, sign);
+
+        const cloudinaryResponse = await axios.post(
+          `https://api.cloudinary.com/v1_1/${cloud_name}/auto/upload`,
+          body,
+          config
+        );
+        console.log("bulk image upload done", cloudinaryResponse);
+        urls.push({
+          publicId: cloudinaryResponse.data.public_id,
+          url: cloudinaryResponse.data.secure_url,
+        });
+      }
+
+      console.log("update bulk url", urls);
+      const res = await updateImageUrl(type, uniqueId, urls);
+      return res;
+    } else {
+      // Single upload
+      const body = getFormData(file, sign);
+
+      const cloudinaryResponse = await axios.post(
+        `https://api.cloudinary.com/v1_1/${cloud_name}/auto/upload`,
+        body,
+        config
+      );
+      const res = await updateImageUrl(type, uniqueId, cloudinaryResponse.data);
+      return res;
+    }
   } catch (error) {
     console.error(error);
   }
@@ -49,23 +75,36 @@ const updateImageUrl = async (
   queryObject,
   cloudinaryResponse
 ) => {
-  console.log(cloudinaryResponse);
-  const body = {
-    "public-id": cloudinaryResponse.public_id,
-    "image-url": cloudinaryResponse.secure_url,
-    collection: collectionName,
-    "query-param": queryObject,
-  };
+  if (Array.isArray(cloudinaryResponse)) {
+    const body = {
+      collection: collectionName,
+      "query-param": queryObject,
+      "image-list": cloudinaryResponse,
+    };
 
-  console.log(body);
+    const response = await fetcher(
+      "http://localhost:5000/api/v1/file/update-url",
+      "POST",
+      body
+    );
 
-  const response = await fetcher(
-    "http://localhost:5000/api/v1/file/update-url",
-    "POST",
-    body
-  );
+    return response;
+  } else {
+    const body = {
+      "public-id": cloudinaryResponse.public_id,
+      "image-url": cloudinaryResponse.secure_url,
+      collection: collectionName,
+      "query-param": queryObject,
+    };
 
-  return response;
+    const response = await fetcher(
+      "http://localhost:5000/api/v1/file/update-url",
+      "POST",
+      body
+    );
+
+    return response;
+  }
 };
 
 export default uploader;
