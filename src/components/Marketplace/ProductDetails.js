@@ -77,11 +77,11 @@ const Product = () => {
                   </div>
                   <div className="details col-md-6">
                     <h3 className="product-title">{product.name}</h3>
-                    {product.isVerified && (
+                    {/* {product.isVerified && (
                       <span className=" mb-3 fw-bold text-success">
                         (Verified)
                       </span>
-                    )}
+                    )} */}
                     <h5 className="price">
                       price:
                       <span> </span>
@@ -102,11 +102,11 @@ const Product = () => {
                     </p>
 
                     <div className="action">
-                      {/* <BuyButton product={product}></BuyButton> */}
+                      <BuyButton product={product}></BuyButton>
 
-                      {/* <FavoriteButton product_id={product._id}></FavoriteButton>
+                      <FavoriteButton product_id={product._id}></FavoriteButton>
 
-                      <BidButton product_id={product._id}></BidButton> */}
+                      <BidButton product_id={product._id}></BidButton>
                     </div>
                   </div>
                 </div>
@@ -116,7 +116,6 @@ const Product = () => {
                       <h6 class="card-header">Seller Information</h6>
                       <div class="card-body">
                         <p class="card-title">Name : {userDetail.name}</p>
-                        {/* <p class="card-title">Address : {userDetail.address.location}</p> */}
                         <p class="card-title">Email : {userDetail.email}</p>
                         <Link
                           onClick={(e) =>
@@ -138,7 +137,6 @@ const Product = () => {
                       <h6 class="card-header">Buyer Information</h6>
                       <div class="card-body">
                         <p class="card-title">Name : {userDetail.name}</p>
-                        {/* <p class="card-title">Address : {userDetail.address.location}</p> */}
                         <p class="card-title">Email : {userDetail.email}</p>
                         <Link
                           onClick={(e) =>
@@ -154,10 +152,10 @@ const Product = () => {
                     </div>
                   </div>
                 )}
-                {/* {!product.buyer && user && product.user === user._id && (
+                {!product.buyer && user && product.user === user._id && (
                   <Bids product_id={product._id}></Bids>
-                )} */}
-                {/* <Comment product_id={product._id}></Comment> */}
+                )}
+                <Comment product_id={product._id}></Comment>
               </div>
             </div>
           )}

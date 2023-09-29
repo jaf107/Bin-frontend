@@ -23,7 +23,7 @@ const Marketplace = () => {
   const alert = useAlert();
   useEffect(() => {
     dispatch(getProducts(keyword));
-    dispatch(getFavorites());
+    // dispatch(getFavorites());
   }, [dispatch, keyword]);
 
   const navigate = useNavigate();

@@ -131,7 +131,10 @@ export const getSingleProduct = (id) => async (dispatch) => {
     dispatch({ type: GET_SINGLE_PRODUCT_REQUEST });
     // const config = { headers: { "Content-Type": "application/json" } };
 
-    const data = await fetcher(`http://localhost:5000/api/v1/product/${id}`);
+    const data = await fetcher(
+      `http://localhost:5000/api/v1/product/${id}`,
+      "GET"
+    );
     console.log(data);
     dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: data });
   } catch (error) {
