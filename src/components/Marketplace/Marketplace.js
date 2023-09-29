@@ -18,7 +18,7 @@ const Marketplace = () => {
   const { keyword } = useParams();
   // console.log(keyword);
   const { products } = useSelector((state) => state.products);
-  console.log(products);
+  // console.log(products);
   const { error } = useSelector((state) => state.favorites);
   const alert = useAlert();
   useEffect(() => {
@@ -59,10 +59,10 @@ const Marketplace = () => {
                         product.productType === "marketplace" && (
                           <span className="separate-card ">
                             <div className="card">
-                              <Link to={`/product/${product._id}`}>
+                              <Link to={`/product/${product.id}`}>
                                 <img
                                   className="card-img-top"
-                                  src={"/Profile.png "}
+                                  src={product.images[0]?.url || "/Profile.png"}
                                   alt="Card image cap"
                                 />
                               </Link>
@@ -81,7 +81,7 @@ const Marketplace = () => {
                                     {product.description}{" "}
                                   </p>
                                   <p className="card-text text-center p-2">
-                                    Price: {product.purchase_price}
+                                    Price: {product.askingPrice}
                                   </p>
                                   <div />
                                 </div>

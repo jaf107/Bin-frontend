@@ -15,9 +15,10 @@ const ProductForm = () => {
     quantity: "",
     condition: "",
     description: "",
-    date_of_purchase: "",
-    purchase_price: "",
-    product_type: "",
+    dateOfPurchase: "",
+    purchasePrice: "",
+    askingPrice: "",
+    productType: "",
     address: "",
   });
 
@@ -27,9 +28,10 @@ const ProductForm = () => {
     quantity,
     condition,
     description,
-    date_of_purchase,
-    purchase_price,
-    product_type,
+    dateOfPurchase,
+    purchasePrice,
+    askingPrice,
+    productType,
     address,
   } = product;
 
@@ -53,9 +55,10 @@ const ProductForm = () => {
     productForm.set("quantity", quantity);
     productForm.set("condition", condition);
     productForm.set("description", description);
-    productForm.set("dateOfPurchase", date_of_purchase);
-    productForm.set("purchasePrice", purchase_price);
-    productForm.set("productType", product_type.toLowerCase());
+    productForm.set("dateOfPurchase", dateOfPurchase);
+    productForm.set("purchasePrice", purchasePrice);
+    productForm.set("askingPrice", askingPrice);
+    productForm.set("productType", productType.toLowerCase());
     productForm.set("address", address);
     productForm.set("userId", id);
     // console.log(user.id);
@@ -70,9 +73,10 @@ const ProductForm = () => {
       quantity: "",
       condition: "",
       description: "",
-      date_of_purchase: "",
-      purchase_price: "",
-      product_type: "",
+      dateOfPurchase: "",
+      purchasePrice: "",
+      askingPrice: "",
+      productType: "",
     });
     setImages([]);
     setImagesPreview([]);
@@ -104,155 +108,6 @@ const ProductForm = () => {
   return (
     <div>
       <div className="container productform">
-        {/*   <form className="form-floating" onSubmit={productSubmit}>
-          <div className="form-group mb-4">
-            <select
-              id="product_type"
-              name="product_type"
-              className="form-control"
-              value={product_type.toLowerCase()}
-              onChange={productDataChange}
-              required
-            >
-              <option value="" disabled selected>
-                Select Product Type
-              </option>
-              <option>Marketplace</option>
-              <option>Recycle</option>
-              <option>Donation</option>
-            </select>
-          </div>
-          <div className="form-group mb-4">
-            <input
-              placeholder="Name"
-              className="form-control"
-              required
-              name="name"
-              type="text"
-              value={name}
-              onChange={productDataChange}
-            />
-          </div>
-          <div className="form-group mb-4">
-            <select
-              id="product_categorie"
-              name="category"
-              className="form-control"
-              value={category}
-              onChange={productDataChange}
-            >
-              <option value="" disabled selected>
-                Select Product Category
-              </option>
-              <option>Book</option>
-              <option>Newspaper</option>
-              <option>Cell Phone</option>
-              <option>Bottle</option>
-              <option>Glass</option>
-              <option>Laptop</option>
-            </select>
-          </div>
-
-          <div className="form-group mb-4">
-            <input
-              id="quantity"
-              name="quantity"
-              placeholder="Available Quantity"
-              className="form-control"
-              required=""
-              type="text"
-              value={quantity}
-              onChange={productDataChange}
-            />
-          </div>
-          <div className="form-group mb-4">
-            <input
-              id="location"
-              name="location"
-              placeholder="Enter Location here"
-              className="form-control"
-              required=""
-              type="text"
-              value={address}
-              onChange={productDataChange}
-            />
-          </div>
-
-          <div className="form-group mb-4">
-            <textarea
-              className="form-control"
-              placeholder=" Write Product Description here"
-              id="product_description"
-              name="description"
-              value={description}
-              onChange={productDataChange}
-            ></textarea>
-          </div>
-
-          <div className="form-group mb-4">
-            <select
-              id="product_condition"
-              name="condition"
-              className="form-control"
-              value={condition}
-              onChange={productDataChange}
-            >
-              <option value="" disabled selected>
-                Select Product Condition
-              </option>
-              <option>New</option>
-              <option>Used</option>
-            </select>
-          </div>
-          <div className="form-group mb-4">
-            <input
-              id="purchase_price"
-              name="purchase_price"
-              placeholder="Purchase Price"
-              className="form-control "
-              required=""
-              type="number"
-              value={purchase_price}
-              onChange={productDataChange}
-            />
-          </div>
-
-          <div className="form-group mb-3">
-            <input
-              id="date_of_purchase"
-              name="date_of_purchase"
-              ref={ref}
-              placeholder="Enter Date of Purchase"
-              onFocus={() => (ref.current.type = "date")}
-              onBlur={() => (ref.current.type = "text")}
-              className="form-control"
-              required=""
-              type="text"
-              value={date_of_purchase}
-              onChange={productDataChange}
-            />
-          </div>
-          <div id="createProductFormFile">
-            <input
-              type="file"
-              name="avatar"
-              accept="image/*"
-              onChange={createProductImagesChange}
-              multiple
-            />
-          </div>
-
-          <div id="createProductFormImage">
-            {imagesPreview.map((image, index) => (
-              <img key={index} src={image} alt="Product Preview" />
-            ))}
-          </div>
-
-          <div className=" ">
-            <button className="btn btn-success addbtn">Add Product</button>
-          </div>
-        </form>
-       */}
         <form className="form-floating" onSubmit={productSubmit}>
           <div className="row ">
             <div className="col-md-6">
@@ -278,7 +133,7 @@ const ProductForm = () => {
                 </div>
 
                 <select
-                  id="product_category"
+                  id="productCategory"
                   name="category"
                   className="form-control"
                   value={category}
@@ -333,7 +188,7 @@ const ProductForm = () => {
                   <i className="fa fa-check-circle"></i>
                 </div>
                 <select
-                  id="product_condition"
+                  id="productCondition"
                   name="condition"
                   className="form-control"
                   value={condition}
@@ -352,24 +207,38 @@ const ProductForm = () => {
                   <i className="fa fa-money"></i>
                 </div>
                 <input
-                  id="purchase_price"
-                  name="purchase_price"
+                  id="purchasePrice"
+                  name="purchasePrice"
                   className="form-control"
                   required=""
                   type="number"
                   placeholder="Purchase Price"
-                  value={purchase_price}
+                  value={purchasePrice}
                   onChange={productDataChange}
                 />
               </div>
-
+              <div className="form-group mb-4 flex">
+                <div className="col-md-1 center pt-3">
+                  <i className="fa fa-money"></i>
+                </div>
+                <input
+                  id="askingPrice"
+                  name="askingPrice"
+                  className="form-control"
+                  required=""
+                  type="number"
+                  placeholder="Asking Price"
+                  value={askingPrice}
+                  onChange={productDataChange}
+                />
+              </div>
               <div className="form-group mb-4 flex">
                 <div className="col-md-1 center pt-3">
                   <i className="fa fa-calendar"></i>
                 </div>
                 <input
-                  id="date_of_purchase"
-                  name="date_of_purchase"
+                  id="dateOfPurchase"
+                  name="dateOfPurchase"
                   ref={ref}
                   onFocus={() => (ref.current.type = "date")}
                   onBlur={() => (ref.current.type = "text")}
@@ -377,7 +246,7 @@ const ProductForm = () => {
                   required=""
                   type="text"
                   placeholder="Enter Date of Purchase"
-                  value={date_of_purchase}
+                  value={dateOfPurchase}
                   onChange={productDataChange}
                 />
               </div>
@@ -389,10 +258,10 @@ const ProductForm = () => {
                   <i className="fa fa-shopping-cart"></i>
                 </div>
                 <select
-                  id="product_type"
-                  name="product_type"
+                  id="productType"
+                  name="productType"
                   className="form-control text-primary"
-                  value={product_type.toLowerCase()}
+                  value={productType.toLowerCase()}
                   onChange={productDataChange}
                   required
                 >
@@ -410,7 +279,7 @@ const ProductForm = () => {
                 </div>
                 <textarea
                   className="mt-2 p-1"
-                  id="product_description"
+                  id="productDescription"
                   name="description"
                   placeholder="Write Product Description here"
                   value={description}
@@ -436,7 +305,12 @@ const ProductForm = () => {
 
               <div id="createProductFormImage">
                 {imagesPreview.map((image, index) => (
-                  <img key={index} src={image} alt="Product Preview" />
+                  <img
+                    key={index}
+                    src={image}
+                    alt="Product Preview"
+                    width={400}
+                  />
                 ))}
               </div>
             </div>

@@ -63,6 +63,7 @@ export const addProduct = (productData) => async (dispatch) => {
       description: productData.get("description"),
       dateOfPurchase: productData.get("dateOfPurchase"),
       purchasePrice: productData.get("purchasePrice"),
+      askingPrice: productData.get("askingPrice"),
       productType: productData.get("productType"),
       address: productData.get("address"),
       userId: productData.get("userId"),
@@ -130,14 +131,13 @@ export const getSingleProduct = (id) => async (dispatch) => {
     dispatch({ type: GET_SINGLE_PRODUCT_REQUEST });
     // const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await fetcher(
-      `http://localhost:5000/api/v1/product/${id}`
-    );
-    dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: data.product });
+    const data = await fetcher(`http://localhost:5000/api/v1/product/${id}`);
+    console.log(data);
+    dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: GET_SINGLE_PRODUCT_FAIL,
-      payload: error.response.data.message,
+      payload: error,
     });
   }
 };

@@ -22,26 +22,26 @@ const Product = () => {
   const [isSeller, setisSeller] = useState(false);
   useEffect(() => {
     dispatch(getSingleProduct(id));
-    if (product && user) {
-      if (product.buyer && product.user === user._id) {
-        dispatch(getUserDetails(product.buyer));
-        navigate(`/product/${id}`);
-      } else if (product.buyer === user._id) {
-        dispatch(getUserDetails(product.user));
-        navigate(`/product/${id}`);
-      }
-    }
+    // if (product && user) {
+    //   if (product.buyer && product.user === user._id) {
+    //     dispatch(getUserDetails(product.buyer));
+    //     navigate(`/product/${id}`);
+    //   } else if (product.buyer === user._id) {
+    //     dispatch(getUserDetails(product.user));
+    //     navigate(`/product/${id}`);
+    //   }
+    // }
   }, [dispatch, navigate, id]);
 
-  const [bidAmount, setBidAmount] = useState(0);
+  // const [bidAmount, setBidAmount] = useState(0);
 
-  const onBidAmountChange = (e) => {
-    setBidAmount(e.target.value);
-  };
+  // const onBidAmountChange = (e) => {
+  //   setBidAmount(e.target.value);
+  // };
 
-  const submitBid = (e) => {
-    console.log(bidAmount);
-  };
+  // const submitBid = (e) => {
+  //   console.log(bidAmount);
+  // };
 
   return (
     <div>
@@ -65,7 +65,7 @@ const Product = () => {
                       ))}
                     </Carousel>
                     <div className=" text-center">
-                      {product.user === user._id && !product.isVerified && (
+                      {product.user === user.id && !product.isVerified && (
                         <Link
                           className="btn btn-dark m-3 "
                           to={`/object-detect/${id}/${product.category.toLowerCase()}`}
@@ -85,7 +85,7 @@ const Product = () => {
                     <h5 className="price">
                       price:
                       <span> </span>
-                      <span>Tk. {product.purchase_price}</span>
+                      <span>Tk. {product.purchasePrice}</span>
                     </h5>
                     <p className="product-description">{product.description}</p>
                     <p>
@@ -98,19 +98,19 @@ const Product = () => {
                     </p>
                     <p className="vote">
                       Date of purchase -{" "}
-                      <strong>{product.date_of_purchase} </strong>
+                      <strong>{product.dateOfPurchase} </strong>
                     </p>
 
                     <div className="action">
-                      <BuyButton product={product}></BuyButton>
+                      {/* <BuyButton product={product}></BuyButton> */}
 
-                      <FavoriteButton product_id={product._id}></FavoriteButton>
+                      {/* <FavoriteButton product_id={product._id}></FavoriteButton>
 
-                      <BidButton product_id={product._id}></BidButton>
+                      <BidButton product_id={product._id}></BidButton> */}
                     </div>
                   </div>
                 </div>
-                {product.buyer && user && product.buyer === user._id && (
+                {product.buyer && user && product.buyer === user.id && (
                   <div>
                     <div class="card text-center">
                       <h6 class="card-header">Seller Information</h6>
@@ -132,7 +132,7 @@ const Product = () => {
                     </div>
                   </div>
                 )}
-                {product.buyer && user && product.user === user._id && (
+                {product.buyer && user && product.user === user.id && (
                   <div>
                     <div class="card text-center">
                       <h6 class="card-header">Buyer Information</h6>
@@ -154,10 +154,10 @@ const Product = () => {
                     </div>
                   </div>
                 )}
-                {!product.buyer && user && product.user === user._id && (
+                {/* {!product.buyer && user && product.user === user._id && (
                   <Bids product_id={product._id}></Bids>
-                )}
-                <Comment product_id={product._id}></Comment>
+                )} */}
+                {/* <Comment product_id={product._id}></Comment> */}
               </div>
             </div>
           )}
