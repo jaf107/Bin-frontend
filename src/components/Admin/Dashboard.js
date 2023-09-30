@@ -14,6 +14,7 @@ import DonationOrder from "./Orders/DonationOrder";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { getOrders } from "../../redux/actions/orderActions";
+import RequestList from "./Lists/RequestList";
 function Dashboard() {
   const user = {
     name: "Admin",
@@ -119,7 +120,22 @@ function Dashboard() {
                     <span class="label label-warning pull-right r-activity"></span>
                   </a>
                 </li>
-
+                <li className="nav-item custom-nav-item p-3">
+                  <a
+                    className="text-decoration-none nav-link"
+                    id="v-pills-approval-requests-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-approval-requests"
+                    href="#v-pills-approval-requests"
+                    role="tab"
+                    aria-controls="v-pills-approval-requests"
+                    aria-selected="false"
+                  >
+                    <i class="fa fa-user-pen"></i>
+                    Requests
+                    <span class="label label-warning pull-right r-activity"></span>
+                  </a>
+                </li>
                 <li className="nav-item custom-nav-item p-3">
                   <a
                     className="text-decoration-none nav-link"
@@ -204,6 +220,15 @@ function Dashboard() {
             >
               <ProductList />
             </div>
+            <div
+              className="tab-pane fade "
+              id="v-pills-approval-requests"
+              role="tabpanel"
+              aria-labelledby="v-pills-approval-requests-tab"
+            >
+              <RequestList />
+            </div>
+
             <div
               className="tab-pane fade "
               id="v-pills-recycler"
