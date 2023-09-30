@@ -62,6 +62,20 @@ function UserAccount() {
                       <i class="fa fa-user"></i> Profile
                     </a>
                   </li>
+                  <li class="  p-3">
+                    <a
+                      className="text-decoration nav-link active"
+                      id="v-pills-order-tab"
+                      data-bs-toggle="pill"
+                      data-bs-target="#v-pills-order"
+                      href="#v-pills-order"
+                      role="tab"
+                      aria-controls="v-pills-order"
+                      aria-selected="true"
+                    >
+                      <i class="fa fa-box"></i> Orders
+                    </a>
+                  </li>
                   <li className="p-3">
                     <a
                       className="text-decoration-none nav-link"
@@ -131,6 +145,14 @@ function UserAccount() {
                 aria-labelledby="v-pills-products-tab"
               >
                 <MyProducts user_data={user}></MyProducts>
+              </div>
+              <div
+                class="tab-pane fade "
+                id="v-pills-order"
+                role="tabpanel"
+                aria-labelledby="v-pills-order-tab"
+              >
+                Orders
               </div>
               <div
                 class="tab-pane fade "

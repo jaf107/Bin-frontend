@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { createBid, getBid } from "../../../redux/actions/productActions";
+import { placeOrder } from "../../../redux/actions/orderActions";
 
 function BuyButton(props) {
   const { user } = useSelector((state) => state.user);
@@ -9,26 +10,32 @@ function BuyButton(props) {
   const dispatch = useDispatch();
   const alert = useAlert();
 
-  const submitBid = (e) => {
+  const buyRequest = (e) => {
     e.preventDefault();
     const myForm = new FormData();
-    myForm.set("buyer_id", user._id);
-    myForm.set("amount", new Number(props.product.purchase_price));
-    if (!hasBid) {
-      dispatch(getBid(props.product._id));
-      dispatch(createBid(myForm, props.product._id));
-      alert.success("BUY REQUEST MADE SUCCESSFULLY");
-    } else {
-      alert.error("BID EXISTS FOR THE CURRENT PRODUCT");
-    }
-    setHasBid(true);
+
+    myForm.set("username", user.username);
+    myForm.set("product", props.product);
+
+    console.log(myForm.get("username"));
+    console.log(myForm.get("product"));
+
+    dispatch(placeOrder(myForm));
+    // if (!hasBid) {
+    //   dispatch(getBid(props.product._id));
+    dispatch(createBid(myForm, props.product._id));
+    //   alert.success("BUY REQUEST MADE SUCCESSFULLY");
+    // } else {
+    //   alert.error("BID EXISTS FOR THE CURRENT PRODUCT");
+    // }
+    // setHasBid(true);
   };
   return (
     <span>
       <button
         type="button"
         className=" card-button flex-fill border-0 btn btn-success"
-        onClick={submitBid}
+        onClick={buyRequest}
       >
         Buy
       </button>
