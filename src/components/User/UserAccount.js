@@ -32,7 +32,7 @@ function UserAccount() {
               <div class="panel">
                 <div class="user-heading round headerMinHeight">
                   <img
-                    src={user.avatar.publicId || "/profile.png"}
+                    src={user?.avatar?.publicId || "./Profile.png"}
                     alt=""
                     className="mb-2 rounded-circle shadow-sm border border-dark"
                     height={100}
