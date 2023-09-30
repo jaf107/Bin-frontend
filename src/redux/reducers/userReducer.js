@@ -53,9 +53,9 @@ import {
   VERIFY_USER_REQUEST,
   VERIFY_USER_SUCCESS,
   VERIFY_USER_FAIL,
-  PRIVILEDGE_USER_REQUEST,
-  PRIVILEDGE_USER_SUCCESS,
-  PRIVILEDGE_USER_FAIL,
+  GET_REQUEST_FAIL,
+  GET_REQUEST_REQUEST,
+  GET_REQUEST_SUCCESS,
 } from "../constants/userConstants";
 // import Cookies from 'js-cookie';
 
@@ -180,18 +180,7 @@ export const profileReducer = (state = {}, action) => {
         ...state,
         isDeleted: false,
       };
-    case PRIVILEDGE_USER_REQUEST:
-    case PRIVILEDGE_USER_SUCCESS:
-      return {
-        ...state,
-      };
-    case PRIVILEDGE_USER_FAIL:
-    case VERIFY_USER_REQUEST:
-    case VERIFY_USER_SUCCESS:
-      return {
-        ...state,
-        success: action.payload,
-      };
+
     case VERIFY_USER_FAIL:
       return {
         ...state,
@@ -356,6 +345,32 @@ export const FavoriteReducer = (state = { favorites: [] }, action) => {
       return {
         ...state,
         loading: false,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const requestReducer = (state = { requests: [] }, action) => {
+  switch (action.type) {
+    case GET_REQUEST_FAIL:
+    case GET_REQUEST_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case GET_REQUEST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        requests: action.payload,
       };
     case CLEAR_ERRORS:
       return {

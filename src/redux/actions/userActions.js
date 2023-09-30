@@ -50,9 +50,12 @@ import {
   VERIFY_USER_REQUEST,
   VERIFY_USER_SUCCESS,
   VERIFY_USER_FAIL,
-  PRIVILEDGE_USER_REQUEST,
-  PRIVILEDGE_USER_SUCCESS,
-  PRIVILEDGE_USER_FAIL,
+  GET_REQUEST_REQUEST,
+  GET_REQUEST_SUCCESS,
+  GET_REQUEST_FAIL,
+  UPDATE_PRIVILEDGE_REQUEST,
+  UPDATE_PRIVILEDGE_SUCCESS,
+  UPDATE_PRIVILEDGE_FAIL,
 } from "../constants/userConstants";
 
 import axios from "axios";
@@ -400,20 +403,36 @@ export const sendNotification = (info, id) => async (dispatch) => {
   }
 };
 
-// ADD A PRODUCT TO USER FAVORITE
-export const addPriviledge = (formdata) => async (dispatch) => {
+// Update Priviledge
+export const updatePriviledge = (formdata) => async (dispatch) => {
   try {
-    dispatch({ type: PRIVILEDGE_USER_REQUEST });
-    // const config = { headers: { "Content-Type": "application/json" } };
+    dispatch({ type: UPDATE_PRIVILEDGE_REQUEST });
 
-    console.log(formdata);
+    // Update Priviledge of a User = Recycler / Organization
+
     const data = await fetcher(
-      //`http://localhost:5000/api/v1/me/favorites/${id}`,
-      "POST",
+      //`http://localhost:5000/api/v1/admin/account/priviledge`,
+      "PUT",
       formdata
     );
-    dispatch({ type: PRIVILEDGE_USER_SUCCESS, payload: data });
+    dispatch({ type: UPDATE_PRIVILEDGE_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: PRIVILEDGE_USER_FAIL, payload: error });
+    dispatch({ type: UPDATE_PRIVILEDGE_FAIL, payload: error });
+  }
+};
+
+// Get Approval Requests
+export const getApprovalRequests = () => async (dispatch) => {
+  try {
+    dispatch({ type: GET_REQUEST_REQUEST });
+
+    const data = await fetcher(
+      `http://localhost:5000/api/v1/admin/account/priviledge`,
+      "GET"
+    );
+
+    dispatch({ type: GET_REQUEST_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: GET_REQUEST_FAIL, payload: error });
   }
 };

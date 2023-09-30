@@ -18,28 +18,29 @@ import RecycleOrders from "./RecyclerOrders";
 function Recycle() {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const { id, isAuthenticated } = useSelector((state) => state.user);
+  const { user, isAuthenticated } = useSelector((state) => state.user);
+  // console.log(user.roles);
   const { userProducts } = useSelector((state) => state.userProducts);
   const [toggleForm, setToggleForm] = useState(false);
   const [toggleAddNew, setToggleAddNew] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState("");
   const [closeModal, setCloseModal] = useState(false);
-  const onChooseProduct = (e) => {
-    e.preventDefault();
-    if (toggleForm === true) setToggleForm(false);
-    else {
-      const myForm = new FormData();
-      myForm.set("selectedProduct", selectedProduct);
-      setToggleForm(true);
-    }
-  };
-  const handleAddNew = (e) => {
-    setToggleAddNew(true);
-  };
+  // const onChooseProduct = (e) => {
+  //   e.preventDefault();
+  //   if (toggleForm === true) setToggleForm(false);
+  //   else {
+  //     const myForm = new FormData();
+  //     myForm.set("selectedProduct", selectedProduct);
+  //     setToggleForm(true);
+  //   }
+  // };
+  // const handleAddNew = (e) => {
+  //   setToggleAddNew(true);
+  // };
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(getUserProducts(id));
+      // dispatch(getUserProducts(id));
       dispatch(getRecyclers());
       dispatch(getProducts());
     }
@@ -50,17 +51,17 @@ function Recycle() {
     }
   }, [dispatch, alert, isAuthenticated]);
 
-  const productList = userProducts?.map((products) => (
-    <option key={products._id} value={products._id}>
-      {products.name}
-    </option>
-  ));
+  // const productList = userProducts?.map((products) => (
+  //   <option key={products._id} value={products._id}>
+  //     {products.name}
+  //   </option>
+  // ));
 
-  const selectedProductChange = (e) => {
-    setSelectedProduct(e.target.value);
-    // setSelectedProduct({ ...selectedProduct, [e.target.name]: e.target.value });
-    //console.log(selectedProduct);
-  };
+  // const selectedProductChange = (e) => {
+  //   setSelectedProduct(e.target.value);
+  //   // setSelectedProduct({ ...selectedProduct, [e.target.name]: e.target.value });
+  //   //console.log(selectedProduct);
+  // };
 
   const onCloseModal = (closeModal) => {
     setToggleForm(false);
@@ -76,15 +77,15 @@ function Recycle() {
         <div className=" row counterRow text-center align-items-center text-white">
           <div className="col-md-4">
             <h6>Total Recyclers</h6>
-            <h1>100</h1>
+            <h1>101</h1>
           </div>
           <div className="col-md-4">
             <h6>Total Items Recycled</h6>
-            <h1>11,000</h1>
+            <h1>11,053</h1>
           </div>
           <div className="col-md-4">
             <h6>Total Users</h6>
-            <h1>300</h1>
+            <h1>302</h1>
           </div>
         </div>
         <div className="row mt-4">
@@ -127,7 +128,7 @@ function Recycle() {
               Recycle An Item
             </button>
 
-            <div
+            {/* <div
               class="modal fade"
               id="exampleModal"
               tabindex="-1"
@@ -210,7 +211,7 @@ function Recycle() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="col-md-4">
             <div className="row p-2">
@@ -244,78 +245,87 @@ function Recycle() {
           </div>
         </div>
         <div className=" row  align-items-center h-100">
-          <RecycleOrders></RecycleOrders>
+          {/* <RecycleOrders></RecycleOrders> */}
+          {user &&
+            user?.roles &&
+            user?.roles.some((role) => role.name === "ROLE_RECYCLE") && (
+              <h4>Recycler Marketplace</h4>
+            )}
           <div className="col-md-12 text-center">
-            <h4>Our Recyclers</h4>
-            <div class="row  g-4">
+            <h3>Our Recyclers</h3>
+            <div class="row g-4">
               <div class="col">
-                <div class="card">
+                <div class="card recycler-card">
                   <img
                     src={require("../../assets/recycler1.png")}
                     height={250}
                     width={250}
                     class="card-img-top"
-                    alt="..."
+                    alt="Recycler 1 Image"
                   />
                   <div class="card-body">
                     <h5 class="card-title">Recycler 1</h5>
                     <p class="card-text">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content.
+                      Recycler 1 is an advanced waste management system designed
+                      to efficiently handle recycling materials. It incorporates
+                      cutting-edge technology for a cleaner environment.
                     </p>
                   </div>
                 </div>
               </div>
               <div class="col">
-                <div class="card">
+                <div class="card recycler-card">
                   <img
                     src={require("../../assets/recycler2.jpg")}
                     height={250}
                     width={250}
                     class="card-img-top"
-                    alt="..."
+                    alt="Recycler 2 Image"
                   />
                   <div class="card-body">
                     <h5 class="card-title">Recycler 2</h5>
                     <p class="card-text">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content.
+                      Recycler 2 is a versatile recycling solution that can
+                      handle various types of recyclable materials. It's
+                      designed to be user-friendly and efficient.
                     </p>
                   </div>
                 </div>
               </div>
               <div class="col">
-                <div class="card">
+                <div class="card recycler-card">
                   <img
                     src={require("../../assets/recycler3.png")}
                     height={250}
                     width={250}
                     class="card-img-top"
-                    alt="..."
+                    alt="Recycler 3 Image"
                   />
                   <div class="card-body">
                     <h5 class="card-title">Recycler 3</h5>
                     <p class="card-text">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content.
+                      Recycler 3 is an eco-friendly recycling system that
+                      promotes a sustainable future. It's designed to reduce
+                      waste and promote recycling practices.
                     </p>
                   </div>
                 </div>
               </div>
               <div class="col">
-                <div class="card">
+                <div class="card recycler-card">
                   <img
                     src={require("../../assets/recycler3.png")}
                     height={250}
                     width={250}
                     class="card-img-top"
-                    alt="..."
+                    alt="Recycler 4 Image"
                   />
                   <div class="card-body">
                     <h5 class="card-title">Recycler 4</h5>
                     <p class="card-text">
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content.
+                      Recycler 4 is a compact recycling solution that is perfect
+                      for small spaces. It's designed for households and
+                      businesses looking to contribute to recycling efforts.
                     </p>
                   </div>
                 </div>
