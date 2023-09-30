@@ -411,10 +411,11 @@ export const updatePriviledge = (formdata) => async (dispatch) => {
     // Update Priviledge of a User = Recycler / Organization
 
     const data = await fetcher(
-      //`http://localhost:5000/api/v1/admin/account/priviledge`,
+      `http://localhost:5000/api/v1/admin/update/privilege-request`,
       "PUT",
       formdata
     );
+    console.log(data);
     dispatch({ type: UPDATE_PRIVILEDGE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: UPDATE_PRIVILEDGE_FAIL, payload: error });
@@ -427,7 +428,7 @@ export const getApprovalRequests = () => async (dispatch) => {
     dispatch({ type: GET_REQUEST_REQUEST });
 
     const data = await fetcher(
-      `http://localhost:5000/api/v1/admin/account/priviledge`,
+      `http://localhost:5000/api/v1/admin/get-all/privilege-request`,
       "GET"
     );
 

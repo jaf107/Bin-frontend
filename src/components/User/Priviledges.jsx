@@ -49,9 +49,9 @@ const Priviledges = () => {
     e.preventDefault();
     console.log("Organization form submitted:", organizationFormData);
     const organizationForm = new FormData();
-    organizationForm.set("name", organizationFormData.organizationName);
+    organizationForm.set("name", user.username);
     organizationForm.set("location", organizationFormData.organizationLocation);
-    organizationForm.set("type", organizationFormData.organizationType);
+    organizationForm.set("organization", organizationFormData.organizationName);
     organizationForm.set("phone", organizationFormData.organizationPhone);
     dispatch(addOrganization(organizationForm));
 
@@ -168,20 +168,7 @@ const Priviledges = () => {
                 }
               />
             </Form.Group>
-            <Form.Group controlId="organizationType">
-              <Form.Label>Organization Type</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter organization type"
-                value={organizationFormData.organizationType}
-                onChange={(e) =>
-                  setOrganizationFormData({
-                    ...organizationFormData,
-                    organizationType: e.target.value,
-                  })
-                }
-              />
-            </Form.Group>
+
             <Form.Group controlId="organizationLocation">
               <Form.Label>Organization Location</Form.Label>
               <Form.Control
