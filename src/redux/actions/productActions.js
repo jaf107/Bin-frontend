@@ -112,8 +112,8 @@ export const getUserProducts = (userName) => async (dispatch) => {
     dispatch({ type: GET_USER_PRODUCT_REQUEST });
 
     const data = await fetcher(
-      `http://localhost:5000/api/v1/product/${userName}/all-products`,
-      "GET",
+      `http://localhost:5000/api/v1/product/${userName}/all-product`,
+      "GET"
     );
     console.log("Get Single User Products");
     console.log(data);

@@ -104,7 +104,7 @@ function Header() {
           )}
           {isAuthenticated && (
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item p-2 pt-3">
+              <li class="nav-item p-2 pt-3" style={{ width: "54px" }}>
                 <Notification></Notification>
               </li>
               <li class="nav-item p-2 pt-3">
@@ -113,7 +113,7 @@ function Header() {
                 </Link>
               </li>
               {user && user.roles.includes("ROLE_ADMIN") && (
-                <li class="nav-item p-2 mt-2">
+                <li class="nav-item p-2 mt-2" style={{ width: "54px" }}>
                   <Link class="nav-link admin_button" to="/admin/dashboard">
                     <i class="fa-brands fa-adn fs-4"></i>
                   </Link>
