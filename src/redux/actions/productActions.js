@@ -107,15 +107,17 @@ export const getProducts =
   };
 
 // Get user specific Products
-export const getUserProducts = (user_id) => async (dispatch) => {
+export const getUserProducts = (userName) => async (dispatch) => {
   try {
     dispatch({ type: GET_USER_PRODUCT_REQUEST });
 
-    const { data } = await fetcher(
-      `http://localhost:5000/api/v1/me/product`,
-      user_id
+    const data = await fetcher(
+      `http://localhost:5000/api/v1/product/${userName}/all-products`,
+      "GET",
     );
-    dispatch({ type: GET_USER_PRODUCT_SUCCESS, payload: data.product });
+    console.log("Get Single User Products");
+    console.log(data);
+    dispatch({ type: GET_USER_PRODUCT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: GET_USER_PRODUCT_FAIL,

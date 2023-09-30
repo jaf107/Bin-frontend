@@ -17,11 +17,13 @@ const MyProducts = () => {
   const { userProducts } = useSelector((state) => state.userProducts);
   const { products } = useSelector((state) => state.products);
   const { user } = useSelector((state) => state.user);
+  const { username } = user;
 
   useEffect(() => {
-    dispatch(getUserProducts());
-    dispatch(getProducts());
-  }, [dispatch]);
+    console.log(username);
+    dispatch(getUserProducts(username));
+    // dispatch(getProducts());
+  }, [dispatch, username]);
 
   const productList = userProducts?.map((product, index) => (
     <ProductDetails product={product} index={index}></ProductDetails>
@@ -75,7 +77,7 @@ function ProductDetails(props) {
             }}
           >
             <Link
-              to={`/product/${props.product._id}`}
+              to={`/product/${props.product.id}`}
               className=" text-decoration-none fw-bold"
             >
               {props.product.name}
@@ -108,135 +110,135 @@ function ProductDetails(props) {
   );
 }
 
-function ProductBidDetails(props) {
-  const dispatch = useDispatch();
-  const alert = useAlert();
-  const { user } = useSelector((state) => state.user);
-  const [editAmount, setEditAmount] = useState("");
-  const bids = props.product.bids.find((item) => {
-    if (item.buyer_id === user._id) {
-      return item;
-    }
-  });
-  const onDeleteProduct = () => {
-    dispatch(deleteProduct(props.product._id));
-    alert.success("PRODUCT DELETED SUCCESSFULLY");
-    dispatch(getUserProducts());
-  };
-  const onEditBid = (e) => {
-    e.preventDefault();
-    //  const myForm = new FormData();
-    //  myForm.set("editAmount", editAmount);
-    bids.amount = editAmount;
-    dispatch(editBid(props.product._id, bids._id, editAmount));
-    alert.success("BID EDITED SUCCESSFULLY");
-  };
+// function ProductBidDetails(props) {
+//   const dispatch = useDispatch();
+//   const alert = useAlert();
+//   const { user } = useSelector((state) => state.user);
+//   const [editAmount, setEditAmount] = useState("");
+//   const bids = props.product.bids.find((item) => {
+//     if (item.buyer_id === user._id) {
+//       return item;
+//     }
+//   });
+//   const onDeleteProduct = () => {
+//     dispatch(deleteProduct(props.product._id));
+//     alert.success("PRODUCT DELETED SUCCESSFULLY");
+//     dispatch(getUserProducts());
+//   };
+//   const onEditBid = (e) => {
+//     e.preventDefault();
+//     //  const myForm = new FormData();
+//     //  myForm.set("editAmount", editAmount);
+//     bids.amount = editAmount;
+//     dispatch(editBid(props.product._id, bids._id, editAmount));
+//     alert.success("BID EDITED SUCCESSFULLY");
+//   };
 
-  const onRemoveBid = () => {
-    dispatch(rejectBid(props.product._id, bids._id));
-    alert.success("BID REMOVED SUCCESSFULLY");
-  };
+//   const onRemoveBid = () => {
+//     dispatch(rejectBid(props.product._id, bids._id));
+//     alert.success("BID REMOVED SUCCESSFULLY");
+//   };
 
-  const onEditAmountChange = (e) => {
-    // setBidAmount({ ...bidAmount, [e.target.name]: e.target.value });
-    setEditAmount(e.target.value);
-    // console.log(bidAmount);
-    // setBidAmount({...bidAmount, e.target.name: e.target.value} );
-  };
+//   const onEditAmountChange = (e) => {
+//     // setBidAmount({ ...bidAmount, [e.target.name]: e.target.value });
+//     setEditAmount(e.target.value);
+//     // console.log(bidAmount);
+//     // setBidAmount({...bidAmount, e.target.name: e.target.value} );
+//   };
 
-  return (
-    <tr>
-      {
-        <>
-          <td>{props.index + 1}</td>
-          <td
-            style={{
-              textAlign: "center",
-            }}
-          >
-            <Link
-              to={`/product/${props.product._id}`}
-              className=" text-decoration-none fw-bold"
-            >
-              {props.product.name}
-            </Link>{" "}
-          </td>
-          <td>{props.product.purchase_price} </td>
-          <td>{bids.amount} </td>
-          <td>{props.product.created_at} </td>
-          <td>
-            <button
-              type="button"
-              className=" card-button flex-fill border-0 btn btn-warning btn-sm"
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-            >
-              Edit Bid
-            </button>
-            {/* <h4>
-       Your bidded amount is <strong>{bidAmount} </strong>{" "}
-      </h4> */}
-            <div
-              className="modal fade"
-              id="staticBackdrop"
-              data-bs-backdrop="static"
-              data-bs-keyboard="false"
-              tabindex="-1"
-              aria-labelledby="staticBackdropLabel"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="staticBackdropLabel">
-                      Edit Bid
-                    </h5>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div className="modal-body">
-                    <input
-                      type="number"
-                      name="bidAmount"
-                      onChange={onEditAmountChange}
-                      value={editAmount}
-                      placeholder="Enter your New bid Amount"
-                      class="form-control"
-                      id="inputZip"
-                    />
-                  </div>
-                  <div className="modal-footer">
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-success"
-                      data-bs-dismiss="modal"
-                      onClick={onEditBid}
-                    >
-                      Place Bid
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>{" "}
-          </td>
-          <td>
-            <button className="btn btn-danger btn-sm" onClick={onRemoveBid}>
-              Remove
-            </button>
-          </td>
-        </>
-      }
-    </tr>
-  );
-}
+//   return (
+//     <tr>
+//       {
+//         <>
+//           <td>{props.index + 1}</td>
+//           <td
+//             style={{
+//               textAlign: "center",
+//             }}
+//           >
+//             <Link
+//               to={`/product/${props.product._id}`}
+//               className=" text-decoration-none fw-bold"
+//             >
+//               {props.product.name}
+//             </Link>{" "}
+//           </td>
+//           <td>{props.product.purchase_price} </td>
+//           <td>{bids.amount} </td>
+//           <td>{props.product.created_at} </td>
+//           <td>
+//             <button
+//               type="button"
+//               className=" card-button flex-fill border-0 btn btn-warning btn-sm"
+//               data-bs-toggle="modal"
+//               data-bs-target="#staticBackdrop"
+//             >
+//               Edit Bid
+//             </button>
+//             {/* <h4>
+//        Your bidded amount is <strong>{bidAmount} </strong>{" "}
+//       </h4> */}
+//             <div
+//               className="modal fade"
+//               id="staticBackdrop"
+//               data-bs-backdrop="static"
+//               data-bs-keyboard="false"
+//               tabindex="-1"
+//               aria-labelledby="staticBackdropLabel"
+//               aria-hidden="true"
+//             >
+//               <div className="modal-dialog">
+//                 <div className="modal-content">
+//                   <div className="modal-header">
+//                     <h5 className="modal-title" id="staticBackdropLabel">
+//                       Edit Bid
+//                     </h5>
+//                     <button
+//                       type="button"
+//                       className="btn-close"
+//                       data-bs-dismiss="modal"
+//                       aria-label="Close"
+//                     ></button>
+//                   </div>
+//                   <div className="modal-body">
+//                     <input
+//                       type="number"
+//                       name="bidAmount"
+//                       onChange={onEditAmountChange}
+//                       value={editAmount}
+//                       placeholder="Enter your New bid Amount"
+//                       class="form-control"
+//                       id="inputZip"
+//                     />
+//                   </div>
+//                   <div className="modal-footer">
+//                     <button
+//                       type="button"
+//                       className="btn btn-secondary"
+//                       data-bs-dismiss="modal"
+//                     >
+//                       Close
+//                     </button>
+//                     <button
+//                       type="button"
+//                       className="btn btn-success"
+//                       data-bs-dismiss="modal"
+//                       onClick={onEditBid}
+//                     >
+//                       Place Bid
+//                     </button>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>{" "}
+//           </td>
+//           <td>
+//             <button className="btn btn-danger btn-sm" onClick={onRemoveBid}>
+//               Remove
+//             </button>
+//           </td>
+//         </>
+//       }
+//     </tr>
+//   );
+// }
