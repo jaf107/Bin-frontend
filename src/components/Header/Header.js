@@ -112,13 +112,18 @@ function Header() {
                   <i className="fa-solid fa-user fs-4"></i>
                 </Link>
               </li>
-              {user && user.roles.includes("ROLE_ADMIN") && (
-                <li class="nav-item p-2 mt-2" style={{ width: "54px" }}>
-                  <Link class="nav-link admin_button" to="/admin/dashboard">
-                    <i class="fa-brands fa-adn fs-4"></i>
-                  </Link>
-                </li>
-              )}
+              {user &&
+                user.roles &&
+                user.roles.some((role) => role.name === "ROLE_ADMIN") && (
+                  <li className="nav-item p-2 mt-2" style={{ width: "54px" }}>
+                    <Link
+                      className="nav-link admin_button"
+                      to="/admin/dashboard"
+                    >
+                      <i className="fab fa-adn fs-4"></i>
+                    </Link>
+                  </li>
+                )}
               <li class="nav-item p-1 m-1">
                 <button class="nav-link btn  fw-bold" onClick={logoutUser}>
                   Logout
