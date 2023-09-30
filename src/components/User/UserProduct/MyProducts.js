@@ -34,8 +34,7 @@ const MyProducts = () => {
         <div class="panel-body bio-graph-info mb-2 p-2"></div>
 
         <div className="p-3 m-2">
-          <h2>My Products</h2>
-          <table class="table">
+          <table class="table table-stripped">
             <thead>
               <tr>
                 <th scope="col">#</th>

@@ -49,8 +49,7 @@ const Favorites = (props) => {
         <div class="bio-graph-heading ">My Favorite Products</div>
         <div class="panel-body bio-graph-info m-2 p-2">
           <div className="p-3 m-2">
-            <h2>Favorite Products</h2>
-            <table class="table">
+            <table class="table table-stripped">
               <thead>
                 <tr>
                   <th scope="col">#</th>

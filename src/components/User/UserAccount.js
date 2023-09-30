@@ -28,19 +28,16 @@ function UserAccount() {
       <div class="container mb-4">
         {user && (
           <div class="row">
-            <div class="profile-nav col-md-3 m-1 p-2 mt-3 profileMinHeight  shadow">
+            <div class="profile-nav col-md-3 m-1 p-2 mt-3 sectionMinHeight  shadow">
               <div class="panel">
-                <div class="user-heading round">
-                  {/* <img src="/profile.png" alt="" /> */}
-                  <i class="fa-solid fa-user profile_img p-3 mb-2"></i>
-
-                  {/* {user.avatar.url && <img src={user.avatar.url} alt="" />}
-                  {!user.avatar.url && (
-                    <img src="/Profile.png" alt="Default Image" />
-                  )} */}
-
+                <div class="user-heading round headerMinHeight">
+                  <img
+                    src={user.avatar.publicId || "/profile.png"}
+                    alt=""
+                    className="mb-2 rounded-circle shadow-sm border border-dark"
+                    height={100}
+                  />
                   <h4>{user.username}</h4>
-                  <h6>{user.email}</h6>
                 </div>
 
                 <ul
@@ -131,7 +128,7 @@ function UserAccount() {
               </div>
             </div>
             <div
-              class="col-md-8 tab-content m-1 p-2 mt-3 profileMinHeight shadow"
+              class="col-md-8 tab-content m-1 p-2 mt-3 sectionMinHeight shadow"
               id="v-pills-tabContent"
             >
               <div

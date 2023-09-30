@@ -15,7 +15,10 @@ body {
   margin-top: 30px;
 }
 
-.profileMinHeight {
+.headerMinHeight {
+  min-height: 200px !important;
+}
+.sectionMinHeight {
   min-height: 600px !important;
 }
 .profile-nav .user-heading {
