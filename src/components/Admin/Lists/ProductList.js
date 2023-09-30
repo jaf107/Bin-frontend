@@ -70,7 +70,7 @@ function ProductDetails(props) {
             }}
           >
             <Link
-              to={`/product/${props.product._id}`}
+              to={`/product/${props.product.id}`}
               className=" text-decoration-none fw-bold"
             >
               {props.product.name}

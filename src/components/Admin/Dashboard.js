@@ -14,6 +14,7 @@ import DonationOrder from "./Orders/DonationOrder";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { getOrders } from "../../redux/actions/orderActions";
+import RequestList from "./Lists/RequestList";
 function Dashboard() {
   const user = {
     name: "Admin",
@@ -56,10 +57,10 @@ function Dashboard() {
   }
 
   return (
-    <div className="admin-dash ">
-      <nav class="navbar navbar-light  shadow p-2 m-2 mt-3">
+    <div className="admin-dash container">
+      <nav class="navbar navbar-light  shadow p-2 mb-2 mt-2 mt-3">
         <div class="container-fluid ">
-          <a class="navbar-brand">ADMIN PANEL</a>
+          <p class="navbar-brand">ADMIN PANEL</p>
           <div class="d-flex btn-group align-items-center justify-content-center">
             <div className="container m-2">
               <h4 className="time">{formattedTime}</h4>
@@ -76,7 +77,7 @@ function Dashboard() {
       </nav>
       <div class="">
         <div class="row">
-          <div class="profile-nav col-md-3 bg-light m-2">
+          <div class="profile-nav col-md-3 sectionMinHeight bg-light shadow">
             <div class="panel">
               <div class="user-heading ">
                 <h1>Mr. Bin</h1>
@@ -119,7 +120,22 @@ function Dashboard() {
                     <span class="label label-warning pull-right r-activity"></span>
                   </a>
                 </li>
-
+                <li className="nav-item custom-nav-item p-3">
+                  <a
+                    className="text-decoration-none nav-link"
+                    id="v-pills-approval-requests-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-approval-requests"
+                    href="#v-pills-approval-requests"
+                    role="tab"
+                    aria-controls="v-pills-approval-requests"
+                    aria-selected="false"
+                  >
+                    <i class="fa fa-user-pen"></i>
+                    Requests
+                    <span class="label label-warning pull-right r-activity"></span>
+                  </a>
+                </li>
                 <li className="nav-item custom-nav-item p-3">
                   <a
                     className="text-decoration-none nav-link"
@@ -184,7 +200,10 @@ function Dashboard() {
             </div>
           </div>
 
-          <div class="col-md-8 tab-content m-2" id="v-pills-tabContent">
+          <div
+            class=" profile-info col-md-9 sectionMinHeight tab-content  shadow"
+            id="v-pills-tabContent"
+          >
             <div
               className="tab-pane fade show active "
               id="v-pills-user"
@@ -201,6 +220,15 @@ function Dashboard() {
             >
               <ProductList />
             </div>
+            <div
+              className="tab-pane fade "
+              id="v-pills-approval-requests"
+              role="tabpanel"
+              aria-labelledby="v-pills-approval-requests-tab"
+            >
+              <RequestList />
+            </div>
+
             <div
               className="tab-pane fade "
               id="v-pills-recycler"
