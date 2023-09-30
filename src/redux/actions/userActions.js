@@ -75,6 +75,9 @@ export const login = (username, password) => async (dispatch) => {
 
     dispatch({ type: LOGIN_SUCCESS, payload: data });
     localStorage.setItem("user_session", JSON.stringify(data));
+    if (data.tokenType) {
+      dispatch(loadUser());
+    }
   } catch (error) {
     dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
   }
