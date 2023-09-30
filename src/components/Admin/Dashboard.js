@@ -150,7 +150,7 @@ function Dashboard() {
                     Organizations
                   </a>
                 </li>
-                <li className="nav-item custom-nav-item p-3">
+                {/* <li className="nav-item custom-nav-item p-3">
                   <a
                     className="text-decoration-none nav-link"
                     id="v-pills-order-recyclers-tab"
@@ -179,7 +179,7 @@ function Dashboard() {
                     <i class="fa fa-building-ngo"></i>
                     Donation Orders
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>

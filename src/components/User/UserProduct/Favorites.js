@@ -45,7 +45,7 @@ const Favorites = (props) => {
   ));
   return (
     <div>
-      <div className="shadow fav_box">
+      <div className=" fav_box">
         <div class="bio-graph-heading ">My Favorite Products</div>
         <div class="panel-body bio-graph-info m-2 p-2">
           <div className="p-3 m-2">

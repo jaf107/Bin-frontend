@@ -29,7 +29,7 @@ const MyProducts = () => {
 
   return (
     <div>
-      <div className="myproducts_box shadow">
+      <div className="myproducts_box ">
         <div class="bio-graph-heading ">My Products</div>
         <div class="panel-body bio-graph-info mb-2 p-2"></div>
 

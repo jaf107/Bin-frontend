@@ -9,6 +9,7 @@ import Favorites from "./UserProduct/Favorites";
 import MyProducts from "./UserProduct/MyProducts";
 import EditAccount from "./EditAccount";
 import { getFavorites } from "../../redux/actions/userActions";
+import MyOrders from "./MyOrders";
 function UserAccount() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function UserAccount() {
       <div class="container mb-4">
         {user && (
           <div class="row">
-            <div class="profile-nav col-md-3 mt-3  shadow">
+            <div class="profile-nav col-md-3 m-1 p-2 mt-3 profileMinHeight  shadow">
               <div class="panel">
                 <div class="user-heading round">
                   {/* <img src="/profile.png" alt="" /> */}
@@ -129,7 +130,10 @@ function UserAccount() {
                 </ul>
               </div>
             </div>
-            <div class="col-md-9 tab-content mt-3" id="v-pills-tabContent">
+            <div
+              class="col-md-8 tab-content m-1 p-2 mt-3 profileMinHeight shadow"
+              id="v-pills-tabContent"
+            >
               <div
                 class="tab-pane fade show active  user_nav_pills"
                 id="v-pills-profile"
@@ -152,7 +156,7 @@ function UserAccount() {
                 role="tabpanel"
                 aria-labelledby="v-pills-order-tab"
               >
-                Orders
+                <MyOrders />
               </div>
               <div
                 class="tab-pane fade "

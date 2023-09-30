@@ -4,7 +4,7 @@ import "./MyProfile.css";
 function MyProfile(props) {
   const user = props.user_data;
   return (
-    <div className="shadow p-1 ">
+    <div className="p-1 ">
       <div class="panel">
         <div class="bio-graph-heading ">General User Profile</div>
         <div class="panel-body bio-graph-info m-4 p-2">

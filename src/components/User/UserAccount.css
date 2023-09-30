@@ -15,6 +15,9 @@ body {
   margin-top: 30px;
 }
 
+.profileMinHeight {
+  min-height: 600px !important;
+}
 .profile-nav .user-heading {
   background-color: rgb(32, 193, 189, 0.8);
   color: #fff;
@@ -29,6 +32,7 @@ body {
   -webkit-border-radius: 50%;
   border: 10px solid rgba(255, 255, 255, 0.3);
   display: inline-block;
+  margin-right: 10px;
 }
 
 .profile-nav .user-heading a img {

@@ -71,7 +71,7 @@ function EditAccount({ location }) {
   }, [dispatch, error, alert]);
 
   return (
-    <div className="form-style shadow edit_box">
+    <div className="form-style edit_box">
       <div class="bio-graph-heading ">Edit Account</div>
       <div class="panel-body bio-graph-info m-2 p-2">
         <form onSubmit={updateSubmit}>
