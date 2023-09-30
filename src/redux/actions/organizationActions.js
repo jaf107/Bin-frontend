@@ -42,10 +42,10 @@ export const addOrganization = (organizationData) => async (dispatch) => {
     dispatch({ type: CREATE_ORGANIZATION_REQUEST });
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-    const { data } = await axios.post(
+    const { data } = await fetcher(
       `http://localhost:5000/api/v1/organization/new`,
-      organizationData,
-      config
+      "POST",
+      organizationData
     );
 
     dispatch({

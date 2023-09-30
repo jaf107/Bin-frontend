@@ -50,6 +50,9 @@ import {
   VERIFY_USER_REQUEST,
   VERIFY_USER_SUCCESS,
   VERIFY_USER_FAIL,
+  PRIVILEDGE_USER_REQUEST,
+  PRIVILEDGE_USER_SUCCESS,
+  PRIVILEDGE_USER_FAIL,
 } from "../constants/userConstants";
 
 import axios from "axios";
@@ -394,5 +397,23 @@ export const sendNotification = (info, id) => async (dispatch) => {
       type: SEND_NOTIFICATION_FAIL,
       payload: error.response.data.message,
     });
+  }
+};
+
+// ADD A PRODUCT TO USER FAVORITE
+export const addPriviledge = (formdata) => async (dispatch) => {
+  try {
+    dispatch({ type: PRIVILEDGE_USER_REQUEST });
+    // const config = { headers: { "Content-Type": "application/json" } };
+
+    console.log(formdata);
+    const data = await fetcher(
+      //`http://localhost:5000/api/v1/me/favorites/${id}`,
+      "POST",
+      formdata
+    );
+    dispatch({ type: PRIVILEDGE_USER_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: PRIVILEDGE_USER_FAIL, payload: error });
   }
 };

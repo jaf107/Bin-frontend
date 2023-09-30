@@ -32,10 +32,10 @@ function MyProfile(props) {
                 </p>
               </div>
               <div class="bio-row">
-                <p className="bio-attribute roles">
+                {/* <p className="bio-attribute roles">
                   <span>Roles</span>:{" "}
                   {user.roles.map((role) => role.name).join(", ")}
-                </p>
+                </p> */}
               </div>
             </div>
             <div class="col-3 image-col">

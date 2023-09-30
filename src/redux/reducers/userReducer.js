@@ -53,6 +53,9 @@ import {
   VERIFY_USER_REQUEST,
   VERIFY_USER_SUCCESS,
   VERIFY_USER_FAIL,
+  PRIVILEDGE_USER_REQUEST,
+  PRIVILEDGE_USER_SUCCESS,
+  PRIVILEDGE_USER_FAIL,
 } from "../constants/userConstants";
 // import Cookies from 'js-cookie';
 
@@ -177,6 +180,12 @@ export const profileReducer = (state = {}, action) => {
         ...state,
         isDeleted: false,
       };
+    case PRIVILEDGE_USER_REQUEST:
+    case PRIVILEDGE_USER_SUCCESS:
+      return {
+        ...state,
+      };
+    case PRIVILEDGE_USER_FAIL:
     case VERIFY_USER_REQUEST:
     case VERIFY_USER_SUCCESS:
       return {

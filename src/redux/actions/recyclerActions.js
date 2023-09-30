@@ -37,8 +37,7 @@ export const addRecycler = (recyclerData) => async (dispatch) => {
     const { data } = await fetcher(
       `http://localhost:5000/api/v1/recycler/new`,
       "POST",
-      recyclerData,
-      config
+      recyclerData
     );
 
     dispatch({ type: CREATE_RECYCLER_SUCCESS, payload: data.recyclers });

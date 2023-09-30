@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import "./Priviledges.css";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import { Button, Modal, Form, Container, Row, Col } from "react-bootstrap"; // Import Bootstrap components
+import { useDispatch, useSelector } from "react-redux";
+import { addPriviledge } from "../../redux/actions/userActions";
+import { addRecycler } from "../../redux/actions/recyclerActions";
+import { addOrganization } from "../../redux/actions/organizationActions";
 
 const Priviledges = () => {
   // State to manage modal visibility and form data
@@ -11,20 +15,32 @@ const Priviledges = () => {
 
   // State to manage form data for Recycler and Organization
   const [recyclerFormData, setRecyclerFormData] = useState({
-    companyName: "",
-    companyLocation: "",
+    recyclerName: "",
+    recyclerLocation: "",
+    recyclerPhone: "",
   });
 
   const [organizationFormData, setOrganizationFormData] = useState({
     organizationName: "",
     organizationType: "",
-    organizationlocation: "",
+    organizationLocation: "",
+    organizationPhone: "",
   });
+
+  const dispatch = useDispatch();
+  const { user, isAuthenticated } = useSelector((state) => state.user);
 
   // Function to handle form submissions for Recycler
   const handleRecyclerSubmit = (e) => {
     e.preventDefault();
     console.log("Recycler form submitted:", recyclerFormData);
+
+    const recyclerForm = new FormData();
+    recyclerForm.set("name", user.username);
+    recyclerForm.set("company", recyclerFormData.recyclerName);
+    recyclerForm.set("location", recyclerFormData.recyclerLocation);
+    recyclerForm.set("phone", recyclerFormData.recyclerPhone);
+    dispatch(addRecycler(recyclerForm));
     setRecyclerModalVisible(false);
   };
 
@@ -32,6 +48,13 @@ const Priviledges = () => {
   const handleOrganizationSubmit = (e) => {
     e.preventDefault();
     console.log("Organization form submitted:", organizationFormData);
+    const organizationForm = new FormData();
+    organizationForm.set("name", organizationFormData.organizationName);
+    organizationForm.set("location", organizationFormData.organizationLocation);
+    organizationForm.set("type", organizationFormData.organizationType);
+    organizationForm.set("phone", organizationFormData.organizationPhone);
+    dispatch(addOrganization(organizationForm));
+
     setOrganizationModalVisible(false);
   };
 
@@ -73,11 +96,11 @@ const Priviledges = () => {
               <Form.Control
                 type="text"
                 placeholder="Enter your name"
-                value={recyclerFormData.companyName}
+                value={recyclerFormData.recyclerName}
                 onChange={(e) =>
                   setRecyclerFormData({
                     ...recyclerFormData,
-                    companyName: e.target.value,
+                    recyclerName: e.target.value,
                   })
                 }
               />
@@ -87,11 +110,25 @@ const Priviledges = () => {
               <Form.Control
                 type="text"
                 placeholder="Enter your location"
-                value={recyclerFormData.companyLocation}
+                value={recyclerFormData.recyclerLocation}
                 onChange={(e) =>
                   setRecyclerFormData({
                     ...recyclerFormData,
-                    companyLocation: e.target.value,
+                    recyclerLocation: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+            <Form.Group controlId="recyclerPhone">
+              <Form.Label>Company Phone</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter your Phone"
+                value={recyclerFormData.recyclerPhone}
+                onChange={(e) =>
+                  setRecyclerFormData({
+                    ...recyclerFormData,
+                    recyclerPhone: e.target.value,
                   })
                 }
               />
@@ -155,6 +192,20 @@ const Priviledges = () => {
                   setOrganizationFormData({
                     ...organizationFormData,
                     organizationLocation: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+            <Form.Group controlId="organizationPhone">
+              <Form.Label>Organization Phone</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter organization phone"
+                value={organizationFormData.organizationPhone}
+                onChange={(e) =>
+                  setOrganizationFormData({
+                    ...organizationFormData,
+                    organizationPhone: e.target.value,
                   })
                 }
               />
