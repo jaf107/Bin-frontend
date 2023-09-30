@@ -56,10 +56,10 @@ function Dashboard() {
   }
 
   return (
-    <div className="admin-dash ">
-      <nav class="navbar navbar-light  shadow p-2 m-2 mt-3">
+    <div className="admin-dash container">
+      <nav class="navbar navbar-light  shadow p-2 mb-2 mt-2 mt-3">
         <div class="container-fluid ">
-          <a class="navbar-brand">ADMIN PANEL</a>
+          <p class="navbar-brand">ADMIN PANEL</p>
           <div class="d-flex btn-group align-items-center justify-content-center">
             <div className="container m-2">
               <h4 className="time">{formattedTime}</h4>
@@ -76,7 +76,7 @@ function Dashboard() {
       </nav>
       <div class="">
         <div class="row">
-          <div class="profile-nav col-md-3 bg-light m-2">
+          <div class="profile-nav col-md-3 sectionMinHeight bg-light shadow">
             <div class="panel">
               <div class="user-heading ">
                 <h1>Mr. Bin</h1>
@@ -184,7 +184,10 @@ function Dashboard() {
             </div>
           </div>
 
-          <div class="col-md-8 tab-content m-2" id="v-pills-tabContent">
+          <div
+            class=" profile-info col-md-9 sectionMinHeight tab-content  shadow"
+            id="v-pills-tabContent"
+          >
             <div
               className="tab-pane fade show active "
               id="v-pills-user"

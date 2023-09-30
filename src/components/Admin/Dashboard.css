@@ -6,6 +6,9 @@
   font-weight: bold;
   border-radius: 5px !important;
 }
+.sectionMinHeight {
+  min-height: 700px !important;
+}
 
 .btn-custom {
   background-color: teal; /* Set your preferred button background color */
@@ -45,7 +48,7 @@
 
 .admin-dash .profile-nav,
 .admin-dash .profile-info {
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 
 .admin-dash .profile-nav .user-heading {

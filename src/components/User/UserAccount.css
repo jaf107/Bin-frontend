@@ -10,11 +10,6 @@ body {
   -moz-font-smoothing: antialiased; */
 }
 
-.profile-nav,
-.profile-info {
-  margin-top: 30px;
-}
-
 .headerMinHeight {
   min-height: 200px !important;
 }

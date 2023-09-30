@@ -10,6 +10,7 @@ import MyProducts from "./UserProduct/MyProducts";
 import EditAccount from "./EditAccount";
 import { getFavorites } from "../../redux/actions/userActions";
 import MyOrders from "./MyOrders";
+import Priviledges from "./Priviledges";
 function UserAccount() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ function UserAccount() {
               <div class="panel">
                 <div class="user-heading round headerMinHeight">
                   <img
-                    src={user.avatar.publicId || "/profile.png"}
+                    src={user.avatar.publicId || "./profile.png"}
                     alt=""
                     className="mb-2 rounded-circle shadow-sm border border-dark"
                     height={100}
@@ -124,6 +125,21 @@ function UserAccount() {
                       Edit profile
                     </a>
                   </li>
+                  <li className="p-3">
+                    <a
+                      className="text-decoration-none nav-link"
+                      id="v-pills-priviledge-tab"
+                      data-bs-toggle="pill"
+                      data-bs-target="#v-pills-priviledge"
+                      href="#v-pills-priviledge"
+                      role="tab"
+                      aria-controls="v-pills-priviledge"
+                      aria-selected="false"
+                    >
+                      <i class="fa fa-star"></i>
+                      Priviledges
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -170,6 +186,14 @@ function UserAccount() {
                 aria-labelledby="v-pills-edit-profile-tab"
               >
                 <EditAccount user_data={user}></EditAccount>
+              </div>
+              <div
+                class="tab-pane fade "
+                id="v-pills-priviledge"
+                role="tabpanel"
+                aria-labelledby="v-pills-priviledge-tab"
+              >
+                <Priviledges />
               </div>
             </div>
           </div>
