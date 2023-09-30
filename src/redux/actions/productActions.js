@@ -135,7 +135,7 @@ export const getSingleProduct = (id) => async (dispatch) => {
       `http://localhost:5000/api/v1/product/${id}`,
       "GET"
     );
-    console.log(data);
+    // console.log(data);
     dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

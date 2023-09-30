@@ -12,7 +12,7 @@ import Comment from "./Product/Comment";
 import Bids from "./Product/Bids";
 import { getUserDetails } from "../../redux/actions/userActions";
 import BuyButton from "./Product/BuyButton";
-const Product = () => {
+const ProductDetails = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
   const { userDetail } = useSelector((state) => state.userDetails);
@@ -21,6 +21,7 @@ const Product = () => {
   const { id } = useParams();
   const [isSeller, setisSeller] = useState(false);
   useEffect(() => {
+    console.log(id);
     dispatch(getSingleProduct(id));
     // if (product && user) {
     //   if (product.buyer && product.user === user._id) {
@@ -31,7 +32,7 @@ const Product = () => {
     //     navigate(`/product/${id}`);
     //   }
     // }
-  }, [dispatch, navigate, id]);
+  }, []);
 
   // const [bidAmount, setBidAmount] = useState(0);
 
@@ -106,11 +107,11 @@ const Product = () => {
 
                       <FavoriteButton product_id={product._id}></FavoriteButton>
 
-                      <BidButton product_id={product._id}></BidButton>
+                      {/* <BidButton product_id={product._id}></BidButton> */}
                     </div>
                   </div>
                 </div>
-                {product.buyer && user && product.buyer === user.id && (
+                {/* {product.buyer && user && product.buyer === user.id && (
                   <div>
                     <div class="card text-center">
                       <h6 class="card-header">Seller Information</h6>
@@ -130,8 +131,8 @@ const Product = () => {
                       </div>
                     </div>
                   </div>
-                )}
-                {product.buyer && user && product.user === user.id && (
+                )} */}
+                {/* {product.buyer && user && product.user === user.id && (
                   <div>
                     <div class="card text-center">
                       <h6 class="card-header">Buyer Information</h6>
@@ -151,10 +152,10 @@ const Product = () => {
                       </div>
                     </div>
                   </div>
-                )}
-                {!product.buyer && user && product.user === user._id && (
+                )} */}
+                {/* {!product.buyer && user && product.user === user._id && (
                   <Bids product_id={product._id}></Bids>
-                )}
+                )} */}
                 <Comment product_id={product._id}></Comment>
               </div>
             </div>
@@ -167,4 +168,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductDetails;
