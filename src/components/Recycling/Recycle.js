@@ -1,20 +1,15 @@
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import ProductForm from "../Marketplace/Product/ProductForm";
 import { useState } from "react";
-import RecycleForm from "./RecycleForm";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useAlert } from "react-alert";
 import { useSelector } from "react-redux";
 import "./Recycle.css";
-import {
-  getProducts,
-  getUserProducts,
-} from "../../redux/actions/productActions";
+import { getProducts } from "../../redux/actions/productActions";
 import { getRecyclers } from "../../redux/actions/recyclerActions";
-import RecycleOrders from "./RecyclerOrders";
 import { Link } from "react-router-dom";
+import { placeRecycleOrder } from "../../redux/actions/orderActions";
 
 function Recycle() {
   const dispatch = useDispatch();
@@ -42,6 +37,8 @@ function Recycle() {
   // const handleAddNew = (e) => {
   //   setToggleAddNew(true);
   // };
+
+  function getInputAskingPrice() {}
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -71,6 +68,14 @@ function Recycle() {
   const onCloseModal = (closeModal) => {
     setToggleForm(false);
     setCloseModal(closeModal);
+  };
+
+  const onRecycleRequest = (index, product) => {
+    const price =
+      document.querySelector(`#asking-price-input-${index}`).value || 0;
+    const buyer = user.username;
+
+    if (price) dispatch(placeRecycleOrder({ product, price, buyer }));
   };
 
   return (
@@ -257,7 +262,7 @@ function Recycle() {
                 <div className="container shadow-lg p-3">
                   <h4 className="text-center">Recycled Objects</h4>
                   <div className="">
-                    {recycleProducts?.map((product) => (
+                    {recycleProducts?.map((product, index) => (
                       <>
                         {!product.buyer && (
                           // product.productType === "recycle" &&
@@ -292,12 +297,18 @@ function Recycle() {
                                     </span>
                                     <input
                                       type="text"
+                                      id={`asking-price-input-${index}`}
                                       class="form-control"
                                       aria-label="Amount (to the nearest BDT)"
                                     />
                                     <span class="input-group-text">BDT</span>
                                   </div>
-                                  <div className="card-button border-0 btn btn-success">
+                                  <div
+                                    className="card-button border-0 btn btn-success"
+                                    onClick={() =>
+                                      onRecycleRequest(index, product)
+                                    }
+                                  >
                                     Buy
                                   </div>
                                 </div>

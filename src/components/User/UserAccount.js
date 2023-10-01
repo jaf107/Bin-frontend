@@ -48,9 +48,9 @@ function UserAccount() {
                   role="tablist"
                   aria-orientation="vertical"
                 >
-                  <li class="  p-3">
+                  <li class="p-3">
                     <a
-                      className="text-decoration nav-link active"
+                      className="text-decoration nav-link"
                       id="v-pills-profile-tab"
                       data-bs-toggle="pill"
                       data-bs-target="#v-pills-profile"
@@ -64,7 +64,7 @@ function UserAccount() {
                   </li>
                   <li class="  p-3">
                     <a
-                      className="text-decoration nav-link active"
+                      className="text-decoration nav-link"
                       id="v-pills-order-tab"
                       data-bs-toggle="pill"
                       data-bs-target="#v-pills-order"
