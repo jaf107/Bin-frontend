@@ -14,11 +14,16 @@ import {
 } from "../../redux/actions/productActions";
 import { getRecyclers } from "../../redux/actions/recyclerActions";
 import RecycleOrders from "./RecyclerOrders";
+import { Link } from "react-router-dom";
 
 function Recycle() {
   const dispatch = useDispatch();
   const alert = useAlert();
   const { user, isAuthenticated } = useSelector((state) => state.user);
+  const { products } = useSelector((state) => state.products);
+  const recycleProducts = products.filter(
+    (product) => product.productType === "recycle"
+  );
   // console.log(user.roles);
   const { userProducts } = useSelector((state) => state.userProducts);
   const [toggleForm, setToggleForm] = useState(false);
@@ -248,8 +253,58 @@ function Recycle() {
           {/* <RecycleOrders></RecycleOrders> */}
           {user &&
             user?.roles &&
-            user?.roles.some((role) => role.name === "ROLE_RECYCLE") && (
-              <h4>Recycler Marketplace</h4>
+            user?.roles.some((role) => role.name === "ROLE_RECYCLER") && (
+              <div className=" col">
+                <div className="container">
+                  <h4 className="text-center">Recycled Objects</h4>
+                  <div className="">
+                    {recycleProducts?.map((product) => (
+                      <>
+                        {!product.buyer && (
+                          // product.productType === "recycle" &&
+                          <span className="separate-card ">
+                            <div className="card">
+                              <Link to={`/product/${product.id}`}>
+                                <img
+                                  className="card-img-top"
+                                  src={product.images[0]?.url || "/Profile.png"}
+                                  alt="Card image cap"
+                                />
+                              </Link>
+
+                              {/* {(product.images).length >1 ? (<Carousel images={product.images}/>):(<img
+                        className="card-img-top"
+                        src={product.images[0]?.url || ""}
+                      alt="Card image cap"/>)} */}
+
+                              <div className="card-body bg-light">
+                                <div>
+                                  <h6 className="card-title center">
+                                    {product.name}
+                                  </h6>
+                                  <p className="card-text p-2">
+                                    {product.description}{" "}
+                                  </p>
+
+                                  <p className="card-text text-center p-2">
+                                    Quantity: {product.quantity}
+                                  </p>
+                                  <div />
+                                </div>
+                                <div className="d-flex">
+                                  <div className="card-button border-0 btn btn-success">
+                                    Buy
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </span>
+                        )}
+                      </>
+                    ))}
+                  </div>
+                </div>
+              </div>
             )}
           <div className="col-md-12 text-center">
             <h3>Our Recyclers</h3>

@@ -10,8 +10,14 @@ import { useEffect } from "react";
 const Donate = () => {
   const { organizations } = useSelector((state) => state.organization);
   const { user, isAuthenticated } = useSelector((state) => state.user);
+  const { products } = useSelector((state) => state.products);
+  const donationProducts = products.filter(
+    (product) => product.productType === "donation"
+  );
+
   const dispatch = useDispatch();
   useEffect(() => {
+    console.log(products);
     // dispatch(getUserProducts(id));
     dispatch(getOrganizations());
   }, [dispatch, isAuthenticated]);
@@ -45,7 +51,49 @@ const Donate = () => {
         </Link>
       </div>
       {user?.roles.some((role) => role.name === "ROLE_ORGANIZATION") && (
-        <h4>Organization Marketplace</h4>
+        <div className=" col">
+          <div className="container shadow-lg p-3">
+            <h4 className="text-center ">Donation Marketplace</h4>
+            <div className="">
+              <div className="row">
+                {donationProducts?.map(
+                  (product) =>
+                    !product.buyer && (
+                      <div className="col-md-3" key={product.id}>
+                        <div className="card mb-3 p-2">
+                          <Link to={`/product/${product.id}`}>
+                            <img
+                              className="card-img-top"
+                              src={product.images[0]?.url || "/Profile.png"}
+                              alt="Card image cap"
+                              height={250}
+                              // width={50}
+                            />
+                          </Link>
+                          <div className="card-body bg-light">
+                            <h6 className="card-title center">
+                              {product.name}
+                            </h6>
+                            <p className="card-text p-2">
+                              {product.description}
+                            </p>
+                            <p className="card-text text-center p-2">
+                              Quantity: {product.quantity}
+                            </p>
+                            <div className="d-flex justify-content-center">
+                              <div className="card-button border-0 btn btn-success">
+                                Request
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
       )}
       <div className="container wheat p-4 mb-4">
         <h2 className="center">List of our enlisted Organizations</h2>

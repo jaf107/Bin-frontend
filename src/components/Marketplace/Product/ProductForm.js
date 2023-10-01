@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../../redux/actions/productActions";
 import { useRef } from "react";
 import "./ProductForm.css";
 import { useAlert } from "react-alert";
+import { useNavigate } from "react-router-dom";
 
 const ProductForm = () => {
   const dispatch = useDispatch();
@@ -38,17 +39,31 @@ const ProductForm = () => {
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
   const { user, isAuthenticated } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
   // console.log(user);
   // let id;
   // if (isAuthenticated) {
   //  id = user;
   // }
 
-  const { id } = user;
+  // useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     navigate("/login");
+  //   }
+  //   // dispatch(getFavorites());
+  // }, []);
 
   // console.log(id);
   const productSubmit = (e) => {
+    if (!isAuthenticated) {
+      alert.error("You need to be logged in first");
+      navigate("/");
+      return;
+    }
+
     e.preventDefault();
+
     const productForm = new FormData();
     productForm.set("name", name);
     productForm.set("category", category);
@@ -60,7 +75,7 @@ const ProductForm = () => {
     productForm.set("askingPrice", askingPrice);
     productForm.set("productType", productType.toLowerCase());
     productForm.set("address", address);
-    productForm.set("userId", id);
+    productForm.set("userId", user?.id);
     // console.log(user.id);
     images.forEach((image) => {
       productForm.append("images", image);
@@ -261,7 +276,7 @@ const ProductForm = () => {
                   id="productType"
                   name="productType"
                   className="form-control text-primary"
-                  value={productType.toLowerCase()}
+                  value={productType}
                   onChange={productDataChange}
                   required
                 >

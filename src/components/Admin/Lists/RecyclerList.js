@@ -39,8 +39,8 @@ const RecyclerList = () => {
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Recycler Name</th>
                 <th scope="col">Company</th>
+                <th scope="col">Recycler Name</th>
                 <th scope="col">Location</th>
                 <th scope="col">Contact No.</th>
                 <th scope="col">Delete</th>
@@ -50,8 +50,8 @@ const RecyclerList = () => {
               {recyclers.map((recycler, index) => (
                 <tr>
                   <td>{index + 1}</td>
-                  <td>{recycler.name}</td>
                   <td>{recycler.company}</td>
+                  <td>{recycler.name}</td>
                   <td>{recycler.location}</td>
                   <td>{recycler.phone}</td>
                   <td>
