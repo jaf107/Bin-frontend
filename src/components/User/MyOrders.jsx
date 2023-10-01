@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getUserBuyOrder,
   getUserSellOrder,
+  updateStatus,
 } from "../../redux/actions/orderActions";
 
 const MyOrders = ({ username }) => {
@@ -48,7 +49,7 @@ const MyOrders = ({ username }) => {
   useEffect(() => {
     dispatch(getUserBuyOrder(user.username));
     dispatch(getUserSellOrder(user.username));
-  }, []);
+  }, [dispatch]);
 
   const [activeTab, setActiveTab] = useState("Buy");
 
@@ -92,31 +93,48 @@ const MyOrders = ({ username }) => {
             <th>Product Name</th>
             <th>Buyer Name</th>
             <th>Order Status</th>
+            <th>Order Type</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {sellOrders.map((order, index) => (
-            <tr key={index}>
-              <td>{order?.product?.name}</td>
-              <td>{order?.buyer}</td>
-              <td>
-                <b>
-                  <span className={getStatusColorClass(order.status)}>
-                    {order.status}
-                  </span>
-                </b>
-              </td>
-              <td>
-                {order.status === "Pending" && (
-                  <>
-                    <button className="btn btn-success m-1">Accept</button>
-                    <button className="btn btn-danger m-1">Reject</button>
-                  </>
-                )}
-              </td>
-            </tr>
-          ))}
+          {sellOrders &&
+            sellOrders.map((order, index) => (
+              <tr key={index}>
+                <td>{order?.product?.name}</td>
+                <td>{order?.buyer}</td>
+                <td>{order?.type}</td>
+                <td>
+                  <b>
+                    <span className={getStatusColorClass(order.status)}>
+                      {order.status}
+                    </span>
+                  </b>
+                </td>
+                <td>
+                  {order.status === "PENDING" && (
+                    <>
+                      <button
+                        className="btn btn-success m-1"
+                        onClick={() =>
+                          dispatch(updateStatus(order.id, "COMPLETED"))
+                        }
+                      >
+                        Accept
+                      </button>
+                      <button
+                        className="btn btn-danger m-1"
+                        onClick={() =>
+                          dispatch(updateStatus(order.id, "REJECTED"))
+                        }
+                      >
+                        Reject
+                      </button>
+                    </>
+                  )}
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>

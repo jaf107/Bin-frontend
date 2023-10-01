@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import "./Donate.css";
 import { getOrganizations } from "../../redux/actions/organizationActions";
+import { placeDonationOrder } from "../../redux/actions/orderActions";
 import { useEffect } from "react";
 
 const Donate = () => {
@@ -21,6 +22,12 @@ const Donate = () => {
     // dispatch(getUserProducts(id));
     dispatch(getOrganizations());
   }, [dispatch, isAuthenticated]);
+
+  function dispatchDonationRequest(selectedProduct) {
+    const buyer = user.username;
+    const product = selectedProduct;
+    dispatch(placeDonationOrder({ buyer, product }));
+  }
   return (
     <div>
       <Header />
@@ -45,7 +52,7 @@ const Donate = () => {
       <div className="container donate">
         <Link
           className="btn border-info btn-lg fw-bold mt-5 p-4 middle "
-          to={"/donation/form"}
+          to={"/addProduct"}
         >
           Donate An Item
         </Link>
@@ -81,7 +88,10 @@ const Donate = () => {
                               Quantity: {product.quantity}
                             </p>
                             <div className="d-flex justify-content-center">
-                              <div className="card-button border-0 btn btn-success">
+                              <div
+                                className="card-button border-0 btn btn-success"
+                                onClick={() => dispatchDonationRequest(product)}
+                              >
                                 Request
                               </div>
                             </div>

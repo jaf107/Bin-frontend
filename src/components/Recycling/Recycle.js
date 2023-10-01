@@ -125,13 +125,12 @@ function Recycle() {
             </div>
           </div>
           <div className="col-md-4 text-center mt-5">
-            <button
+            <Link
               className=" btn border-0 btn-lg fw-bold mt-5 p-4"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              to={"/addProduct"}
             >
               Recycle An Item
-            </button>
+            </Link>
 
             {/* <div
               class="modal fade"
@@ -255,14 +254,14 @@ function Recycle() {
             user?.roles &&
             user?.roles.some((role) => role.name === "ROLE_RECYCLER") && (
               <div className=" col">
-                <div className="container">
+                <div className="container shadow-lg p-3">
                   <h4 className="text-center">Recycled Objects</h4>
                   <div className="">
                     {recycleProducts?.map((product) => (
                       <>
                         {!product.buyer && (
                           // product.productType === "recycle" &&
-                          <span className="separate-card ">
+                          <div className="separate-card col-md-3">
                             <div className="card">
                               <Link to={`/product/${product.id}`}>
                                 <img
@@ -271,11 +270,6 @@ function Recycle() {
                                   alt="Card image cap"
                                 />
                               </Link>
-
-                              {/* {(product.images).length >1 ? (<Carousel images={product.images}/>):(<img
-                        className="card-img-top"
-                        src={product.images[0]?.url || ""}
-                      alt="Card image cap"/>)} */}
 
                               <div className="card-body bg-light">
                                 <div>
@@ -291,14 +285,25 @@ function Recycle() {
                                   </p>
                                   <div />
                                 </div>
-                                <div className="d-flex">
+                                <div className="d-flex gap-2">
+                                  <div class="input-group w-1">
+                                    <span class="input-group-text">
+                                      Ask for
+                                    </span>
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      aria-label="Amount (to the nearest BDT)"
+                                    />
+                                    <span class="input-group-text">BDT</span>
+                                  </div>
                                   <div className="card-button border-0 btn btn-success">
                                     Buy
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </span>
+                          </div>
                         )}
                       </>
                     ))}

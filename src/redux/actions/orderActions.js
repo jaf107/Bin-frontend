@@ -37,6 +37,42 @@ export const placeOrder = (orderData) => async (dispatch) => {
   }
 };
 
+export const placeRecycleOrder = (orderData) => async (dispatch) => {
+  try {
+    dispatch({ type: PLACE_ORDER_REQUEST });
+    const data = await fetcher(
+      `http://localhost:5000/api/v1/order/new/recycle`,
+      "POST",
+      orderData
+    );
+    dispatch({ type: PLACE_ORDER_SUCCESS });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: PLACE_ORDER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+export const placeDonationOrder = (orderData) => async (dispatch) => {
+  try {
+    dispatch({ type: PLACE_ORDER_REQUEST });
+    const data = await fetcher(
+      `http://localhost:5000/api/v1/order/new/donation`,
+      "POST",
+      orderData
+    );
+    dispatch({ type: PLACE_ORDER_SUCCESS });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: PLACE_ORDER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
 // Get orders of a user
 export const getUserBuyOrder = (username) => async (dispatch) => {
   try {
@@ -90,10 +126,11 @@ export const getOrders = () => async (dispatch) => {
 export const updateStatus = (id, status) => async (dispatch) => {
   try {
     dispatch({ type: CHANGE_ORDER_STATUS_REQUEST });
-    const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.put(
-      `http://localhost:5000/api/v1/admin/recycle/order/${id}/${status}`
+    const data = await fetcher(
+      `http://localhost:5000/api/v1/order/update/status`,
+      "PUT",
+      { id, status }
     );
     dispatch({ type: CHANGE_ORDER_STATUS_SUCCESS, payload: data });
   } catch (error) {
