@@ -115,8 +115,8 @@ export const getUserProducts = (userName) => async (dispatch) => {
       `http://localhost:5000/api/v1/product/${userName}/all-product`,
       "GET"
     );
-    console.log("Get Single User Products");
-    console.log(data);
+    // console.log("Get Single User Products");
+    // console.log(data);
     dispatch({ type: GET_USER_PRODUCT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

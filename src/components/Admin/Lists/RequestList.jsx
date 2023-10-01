@@ -14,11 +14,7 @@ const RequestList = () => {
   }, [dispatch]);
 
   const { requests } = useSelector((state) => state.requests);
-  const pendingRequests = requests.filter(
-    (request) => request.accountState === "VERIFICATION_PENDING"
-  );
 
-  // console.log(pendingRequests);
   // State to manage the filter options
   const [filterOptions, setFilterOptions] = useState({
     showRecyclers: true,
@@ -62,9 +58,9 @@ const RequestList = () => {
   const isRecyclerTrue = requests?.company;
 
   // Function to filter requests based on the filter options
-  const filteredRequests = pendingRequests.filter((request) => {
-    const isRecycler = pendingRequests?.company;
-    const isOrganization = pendingRequests?.organization;
+  const filteredRequests = requests.filter((request) => {
+    const isRecycler = request?.company;
+    const isOrganization = request?.organization;
 
     return (
       (filterOptions.showRecyclers && isRecycler) ||
