@@ -1,26 +1,24 @@
 .product body {
-  font-family: 'open sans';
+  font-family: "open sans";
   overflow-x: hidden;
 }
 
 .product img {
-  max-width: 90%;
   border-radius: 5px;
 }
 
-.comment{
+.comment {
   margin: 20px 0;
 }
 
-.mvright{
+.mvright {
   margin-left: 70%;
   text-align: right;
   opacity: 60%;
   /* border: 1px solid black; */
-  
 }
 
-.cardImg{
+.cardImg {
   width: 300px;
   height: 500px;
 }
@@ -88,8 +86,8 @@
   width: 100%;
   -webkit-animation-name: opacity;
   animation-name: opacity;
-  -webkit-animation-duration: .3s;
-  animation-duration: .3s;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
 }
 
 .product .btn {
@@ -187,8 +185,8 @@
   text-transform: UPPERCASE;
   font-weight: bold;
   color: #fff;
-  -webkit-transition: background .3s ease;
-  transition: background .3s ease;
+  -webkit-transition: background 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .product .add-to-cart:hover,
@@ -251,4 +249,3 @@
     transform: scale(1);
   }
 }
-
