@@ -21,7 +21,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [isSeller, setisSeller] = useState(false);
   useEffect(() => {
-    console.log(id);
+    // console.log(id);
     dispatch(getSingleProduct(id));
     // if (product && user) {
     //   if (product.buyer && product.user === user._id) {
@@ -103,8 +103,9 @@ const ProductDetails = () => {
                     </p>
 
                     <div className="action">
-                      <BuyButton product={product}></BuyButton>
-
+                      {user.id !== product.userId && (
+                        <BuyButton product={product} />
+                      )}
                       <FavoriteButton product_id={product._id}></FavoriteButton>
 
                       {/* <BidButton product_id={product._id}></BidButton> */}
