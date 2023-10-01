@@ -68,7 +68,7 @@ const MyOrders = ({ username }) => {
           {buyOrders &&
             buyOrders.map((order, index) => (
               <tr key={index}>
-                <td>{order.condition}</td>
+                <td>{order.product.name}</td>
                 <td>{order.seller}</td>
                 <td>
                   <b>
