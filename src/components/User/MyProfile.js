@@ -26,11 +26,11 @@ function MyProfile(props) {
                   <span>Mobile</span>: (+88) {user.phone}
                 </p>
               </div>
-              <div class="bio-row">
+              {/* <div class="bio-row">
                 <p className="bio-attribute">
                   <span>Address</span>: {user.address}
                 </p>
-              </div>
+              </div> */}
               <div class="bio-row">
                 {/* <p className="bio-attribute roles">
                   <span>Roles</span>:{" "}

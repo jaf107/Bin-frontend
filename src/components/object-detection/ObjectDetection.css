@@ -65,3 +65,20 @@ li {
 #detect-button:hover {
   background-color: #e64a19; /* Change the hover background color to your preference */
 }
+
+/* Add these styles to your ObjectDetection.css file */
+.detected-object {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.detected-object strong {
+  font-weight: bold;
+}
+
+.detected-object em {
+  font-style: italic;
+}

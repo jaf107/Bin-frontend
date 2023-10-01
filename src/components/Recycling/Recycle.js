@@ -136,91 +136,6 @@ function Recycle() {
             >
               Recycle An Item
             </Link>
-
-            {/* <div
-              class="modal fade"
-              id="exampleModal"
-              tabindex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog  mw-100 w-75">
-                <div class="modal-content container">
-                  <div class="modal-header">
-                    {toggleForm && (
-                      <button
-                        className=" btn btn-sm m-3"
-                        onClick={onChooseProduct}
-                      >
-                        Previous
-                      </button>
-                    )}
-                    <h5 class="modal-title d" id="exampleModalLabel">
-                      Add Product
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    {!toggleForm && (
-                      <div>
-                        <div className="row">
-                          <div className="col-md-5">
-                            <form action="">
-                              <div className="form-group mb-4">
-                                <select
-                                  id="select_product"
-                                  className="form-control"
-                                  onChange={selectedProductChange}
-                                >
-                                  <option value="" disabled selected>
-                                    Select Products
-                                  </option>
-                                  {productList}
-                                </select>
-                              </div>
-                              <button
-                                type="submit"
-                                className=" btn btn-primary m-2"
-                                onClick={onChooseProduct}
-                              >
-                                Choose Product
-                              </button>
-                            </form>
-                          </div>
-                          <div className="col-md-2">
-                            <h5> OR</h5>
-                          </div>
-                          <div className="col-md-5">
-                            {!toggleAddNew && (
-                              <button
-                                className=" btn btn-success"
-                                onClick={handleAddNew}
-                              >
-                                Add New
-                              </button>
-                            )}
-                            {toggleAddNew && <ProductForm></ProductForm>}{" "}
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                    {toggleForm && (
-                      <div>
-                        <RecycleForm
-                          product={selectedProduct}
-                          closeModal={onCloseModal}
-                        ></RecycleForm>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div> */}
           </div>
           <div className="col-md-4">
             <div className="row p-2">
@@ -261,7 +176,7 @@ function Recycle() {
               <div className=" col">
                 <div className="container shadow-lg p-3">
                   <h4 className="text-center">Recycled Objects</h4>
-                  <div className="">
+                  <div className="row">
                     {recycleProducts?.map((product, index) => (
                       <>
                         {!product.buyer && (
@@ -273,15 +188,16 @@ function Recycle() {
                                   className="card-img-top"
                                   src={product.images[0]?.url || "/Profile.png"}
                                   alt="Card image cap"
+                                  height={300}
                                 />
                               </Link>
 
-                              <div className="card-body bg-light">
+                              <div className="card-body bg-light ">
                                 <div>
                                   <h6 className="card-title center">
                                     {product.name}
                                   </h6>
-                                  <p className="card-text p-2">
+                                  <p className="card-text p-2 descriptionHeight">
                                     {product.description}{" "}
                                   </p>
 

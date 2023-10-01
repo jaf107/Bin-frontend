@@ -94,6 +94,7 @@ const MyOrders = ({ username }) => {
             <th>Buyer Name</th>
             <th>Order Status</th>
             <th>Order Type</th>
+            <th>Price</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -103,7 +104,6 @@ const MyOrders = ({ username }) => {
               <tr key={index}>
                 <td>{order?.product?.name}</td>
                 <td>{order?.buyer}</td>
-                <td>{order?.type}</td>
                 <td>
                   <b>
                     <span className={getStatusColorClass(order.status)}>
@@ -111,6 +111,8 @@ const MyOrders = ({ username }) => {
                     </span>
                   </b>
                 </td>
+                <td>{order?.type}</td>
+                <td>{order?.price}</td>
                 <td>
                   {order.status === "PENDING" && (
                     <>

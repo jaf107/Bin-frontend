@@ -40,7 +40,7 @@ const OrganizationList = () => {
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Organization Name</th>
-                <th scope="col">Type</th>
+                {/* <th scope="col">Type</th> */}
                 <th scope="col">Location</th>
                 <th scope="col">Contact No.</th>
 
@@ -52,7 +52,7 @@ const OrganizationList = () => {
                 <tr>
                   <td>{index + 1}</td>
                   <td>{organization.name}</td>
-                  <td>{organization.type}</td>
+                  {/* <td>{organization.type}</td> */}
                   <td>{organization.location}</td>
                   <td>{organization.phone}</td>
                   <td>

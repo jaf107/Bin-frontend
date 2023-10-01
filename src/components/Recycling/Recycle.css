@@ -11,6 +11,16 @@
   min-height: 400px;
 }
 
+.descriptionHeight {
+  height: 90px;
+  /* border: 1px solid black; */
+}
+
+.maxHeight {
+  min-height: 300px;
+  /* max-height: 500px; */
+}
+
 .recycle .btn:hover {
   color: white !important;
   background-color: #20c1bd !important;

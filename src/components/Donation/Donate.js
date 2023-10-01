@@ -72,8 +72,8 @@ const Donate = () => {
                             <img
                               className="card-img-top"
                               src={product.images[0]?.url || "/Profile.png"}
-                              alt="Card image cap"
-                              height={250}
+                              alt="Card image cap imageMinHeight"
+                              height={350}
                               // width={50}
                             />
                           </Link>
