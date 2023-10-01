@@ -217,36 +217,38 @@ const ProductForm = () => {
                 </select>
               </div>
 
-              <div className="form-group mb-4 flex">
-                <div className="col-md-1 center pt-3">
-                  <i className="fa fa-money"></i>
+              {productType !== "Donation" && (
+                <div>
+                  <div className="form-group mb-4 flex">
+                    <div className="col-md-1 center pt-3">
+                      <i className="fa fa-money"></i>
+                    </div>
+                    <input
+                      id="purchasePrice"
+                      name="purchasePrice"
+                      className="form-control"
+                      type="number"
+                      placeholder="Purchase Price"
+                      value={purchasePrice}
+                      onChange={productDataChange}
+                    />
+                  </div>
+                  <div className="form-group mb-4 flex">
+                    <div className="col-md-1 center pt-3">
+                      <i className="fa fa-money"></i>
+                    </div>
+                    <input
+                      id="askingPrice"
+                      name="askingPrice"
+                      className="form-control"
+                      type="number"
+                      placeholder="Asking Price"
+                      value={askingPrice}
+                      onChange={productDataChange}
+                    />
+                  </div>
                 </div>
-                <input
-                  id="purchasePrice"
-                  name="purchasePrice"
-                  className="form-control"
-                  required=""
-                  type="number"
-                  placeholder="Purchase Price"
-                  value={purchasePrice}
-                  onChange={productDataChange}
-                />
-              </div>
-              <div className="form-group mb-4 flex">
-                <div className="col-md-1 center pt-3">
-                  <i className="fa fa-money"></i>
-                </div>
-                <input
-                  id="askingPrice"
-                  name="askingPrice"
-                  className="form-control"
-                  required=""
-                  type="number"
-                  placeholder="Asking Price"
-                  value={askingPrice}
-                  onChange={productDataChange}
-                />
-              </div>
+              )}
               <div className="form-group mb-4 flex">
                 <div className="col-md-1 center pt-3">
                   <i className="fa fa-calendar"></i>

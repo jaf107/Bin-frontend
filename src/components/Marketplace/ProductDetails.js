@@ -156,7 +156,7 @@ const ProductDetails = () => {
                 {/* {!product.buyer && user && product.user === user._id && (
                   <Bids product_id={product._id}></Bids>
                 )} */}
-                <Comment product_id={product._id}></Comment>
+                {/* <Comment product_id={product._id}></Comment> */}
               </div>
             </div>
           )}
