@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import "./UserAccount.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import MyProfile from "./MyProfile";
 import Favorites from "./UserProduct/Favorites";
 import MyProducts from "./UserProduct/MyProducts";
@@ -23,6 +23,7 @@ function UserAccount() {
     }
     dispatch(getFavorites());
   }, [dispatch, isAuthenticated]);
+  const { products } = useSelector((state) => state.products);
   return (
     <div className=" userAccount">
       <Header />
@@ -87,12 +88,10 @@ function UserAccount() {
                       aria-selected="false"
                     >
                       <i class="fa fa-calendar"></i> My Products
-                      <span class="label label-warning pull-right r-activity">
-                        9
-                      </span>
+                      <span class="label label-warning pull-right r-activity"></span>
                     </a>
                   </li>
-                  <li className="p-3 ">
+                  {/* <li className="p-3 ">
                     <a
                       className="text-decoration-none nav-link"
                       id="v-pills-favorites-tab"
@@ -109,7 +108,7 @@ function UserAccount() {
                         9
                       </span>
                     </a>
-                  </li>
+                  </li> */}
                   <li className="p-3">
                     <a
                       className="text-decoration-none nav-link"
@@ -171,14 +170,14 @@ function UserAccount() {
               >
                 <MyOrders />
               </div>
-              <div
+              {/* <div
                 class="tab-pane fade "
                 id="v-pills-favorites"
                 role="tabpanel"
                 aria-labelledby="v-pills-favorites-tab"
               >
                 <Favorites user_data={user}></Favorites>
-              </div>
+              </div> */}
               <div
                 class="tab-pane fade "
                 id="v-pills-edit-profile"
