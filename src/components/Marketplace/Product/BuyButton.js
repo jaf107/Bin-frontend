@@ -14,16 +14,13 @@ function BuyButton(props) {
     e.preventDefault();
     const myForm = new FormData();
 
-    myForm.set("username", user.username);
+    myForm.set("buyer", user.username);
     myForm.set("product", props.product);
 
-    console.log(myForm.get("username"));
-    console.log(myForm.get("product"));
-
-    dispatch(placeOrder(myForm));
+    dispatch(placeOrder({buyer: user.username, product: props.product}));
     // if (!hasBid) {
     //   dispatch(getBid(props.product._id));
-    dispatch(createBid(myForm, props.product._id));
+    // dispatch(createBid(myForm, props.product._id));
     //   alert.success("BUY REQUEST MADE SUCCESSFULLY");
     // } else {
     //   alert.error("BID EXISTS FOR THE CURRENT PRODUCT");

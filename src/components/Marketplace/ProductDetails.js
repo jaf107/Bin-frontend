@@ -103,7 +103,7 @@ const ProductDetails = () => {
                     </p>
 
                     <div className="action">
-                      {user.id !== product.userId && (
+                      {user?.id !== product?.userId && (
                         <BuyButton product={product} />
                       )}
                       <FavoriteButton product_id={product._id}></FavoriteButton>

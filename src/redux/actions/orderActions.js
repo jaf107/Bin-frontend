@@ -19,9 +19,8 @@ axios.defaults.withCredentials = true;
 export const placeOrder = (orderData) => async (dispatch) => {
   try {
     dispatch({ type: PLACE_ORDER_REQUEST });
-    const config = { headers: { "Content-Type": "application/json" } };
     const data = await fetcher(
-      `http://localhost:5000/api/v1/me/order/new`,
+      `http://localhost:5000/api/v1/order/new`,
       "POST",
       orderData
     );
