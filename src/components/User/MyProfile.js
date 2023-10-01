@@ -40,9 +40,10 @@ function MyProfile(props) {
             </div>
             <div class="col-3 image-col">
               <img
-                src="/Profile.png"
+                src={user?.avatar?.publicId || "./Profile.png"}
                 className="dashboard_profile_img"
                 alt="User Profile"
+                width={300}
               />
             </div>
           </div>

@@ -1,8 +1,14 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getUserBuyOrder,
+  getUserSellOrder,
+} from "../../redux/actions/orderActions";
 
 const MyOrders = ({ username }) => {
   // Dummy user orders data
-  const userOrders = [
+  const userOrdersTemp = [
     {
       type: "Buy",
       condition: "Buy Order 1",
@@ -35,6 +41,15 @@ const MyOrders = ({ username }) => {
     },
   ];
 
+  const { user } = useSelector((state) => state.user);
+  const { buyOrders, sellOrders } = useSelector((state) => state.userOrders);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserBuyOrder(user.username));
+    dispatch(getUserSellOrder(user.username));
+  }, []);
+
   const [activeTab, setActiveTab] = useState("Buy");
 
   const BuyRequests = () => (
@@ -49,29 +64,27 @@ const MyOrders = ({ username }) => {
           </tr>
         </thead>
         <tbody>
-          {userOrders.map(
-            (order, index) =>
-              order.type === "Buy" && (
-                <tr key={index}>
-                  <td>{order.condition}</td>
-                  <td>{order.seller}</td>
-                  <td>
-                    <b>
-                      <span className={getStatusColorClass(order.status)}>
-                        {order.status}
-                      </span>
-                    </b>
-                  </td>
-                </tr>
-              )
-          )}
+          {buyOrders &&
+            buyOrders.map((order, index) => (
+              <tr key={index}>
+                <td>{order.condition}</td>
+                <td>{order.seller}</td>
+                <td>
+                  <b>
+                    <span className={getStatusColorClass(order.status)}>
+                      {order.status}
+                    </span>
+                  </b>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
   );
 
   const SellRequests = () => (
-    <div className="">
+    <div className="container">
       <h2>Sell Requests</h2>
       <table className="table table-striped">
         <thead>
@@ -83,30 +96,27 @@ const MyOrders = ({ username }) => {
           </tr>
         </thead>
         <tbody>
-          {userOrders.map(
-            (order, index) =>
-              order.type === "Sell" && (
-                <tr key={index}>
-                  <td>{order.condition}</td>
-                  <td>{order.buyer}</td>
-                  <td>
-                    <b>
-                      <span className={getStatusColorClass(order.status)}>
-                        {order.status}
-                      </span>
-                    </b>
-                  </td>
-                  <td>
-                    {order.status === "Pending" && (
-                      <>
-                        <button className="btn btn-success m-1">Accept</button>
-                        <button className="btn btn-danger m-1">Reject</button>
-                      </>
-                    )}
-                  </td>
-                </tr>
-              )
-          )}
+          {sellOrders.map((order, index) => (
+            <tr key={index}>
+              <td>{order?.product?.name}</td>
+              <td>{order?.buyer}</td>
+              <td>
+                <b>
+                  <span className={getStatusColorClass(order.status)}>
+                    {order.status}
+                  </span>
+                </b>
+              </td>
+              <td>
+                {order.status === "Pending" && (
+                  <>
+                    <button className="btn btn-success m-1">Accept</button>
+                    <button className="btn btn-danger m-1">Reject</button>
+                  </>
+                )}
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
@@ -114,11 +124,11 @@ const MyOrders = ({ username }) => {
 
   const getStatusColorClass = (status) => {
     switch (status) {
-      case "Accepted":
+      case "ACCEPTED":
         return "text-success";
-      case "Rejected":
+      case "REJECTED":
         return "text-danger";
-      case "Pending":
+      case "PENDING":
         return "text-warning";
       default:
         return "";

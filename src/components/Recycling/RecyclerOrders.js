@@ -7,9 +7,9 @@ import { getSingleRecycler } from "../../redux/actions/recyclerActions";
 function RecycleOrders() {
   const dispatch = useDispatch();
   const { userOrders } = useSelector((state) => state.userOrders);
-  useEffect(() => {
-    dispatch(getUserOrder());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getUserOrder());
+  // }, [dispatch]);
 
   const orderList = userOrders?.map((order) => (
     <div key={order._id} value={order._id}>

@@ -3,15 +3,18 @@ import {
   PLACE_ORDER_REQUEST,
   PLACE_ORDER_SUCCESS,
   PLACE_ORDER_FAIL,
-  GET_USER_ORDER_REQUEST,
-  GET_USER_ORDER_SUCCESS,
-  GET_USER_ORDER_FAIL,
   GET_ORDER_REQUEST,
   GET_ORDER_SUCCESS,
   GET_ORDER_FAIL,
   CHANGE_ORDER_STATUS_REQUEST,
   CHANGE_ORDER_STATUS_SUCCESS,
   CHANGE_ORDER_STATUS_FAIL,
+  GET_USER_BUY_ORDER_REQUEST,
+  GET_USER_BUY_ORDER_SUCCESS,
+  GET_USER_BUY_ORDER_FAIL,
+  GET_USER_SELL_ORDER_REQUEST,
+  GET_USER_SELL_ORDER_SUCCESS,
+  GET_USER_SELL_ORDER_FAIL,
 } from "../constants/orderConstants";
 const axios = require("axios");
 axios.defaults.withCredentials = true;
@@ -35,16 +38,36 @@ export const placeOrder = (orderData) => async (dispatch) => {
 };
 
 // Get orders of a user
-export const getUserOrder = () => async (dispatch) => {
+export const getUserBuyOrder = (username) => async (dispatch) => {
   try {
-    dispatch({ type: GET_USER_ORDER_REQUEST });
+    dispatch({ type: GET_USER_BUY_ORDER_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:5000/api/v1/me/order`);
-    dispatch({ type: GET_USER_ORDER_SUCCESS, payload: data.order });
+    const data = await fetcher(
+      `http://localhost:5000/api/v1/order/get/buy-order/${username}`,
+      "GET"
+    );
+    dispatch({ type: GET_USER_BUY_ORDER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
-      type: GET_USER_ORDER_FAIL,
-      payload: error.response.data.message,
+      type: GET_USER_BUY_ORDER_FAIL,
+      payload: error,
+    });
+  }
+};
+
+export const getUserSellOrder = (username) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_USER_SELL_ORDER_REQUEST });
+
+    const data = await fetcher(
+      `http://localhost:5000/api/v1/order/get/sell-order/${username}`,
+      "GET"
+    );
+    dispatch({ type: GET_USER_SELL_ORDER_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: GET_USER_SELL_ORDER_FAIL,
+      payload: error,
     });
   }
 };
