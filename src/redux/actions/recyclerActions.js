@@ -34,7 +34,7 @@ export const addRecycler = (recyclerData) => async (dispatch) => {
     dispatch({ type: CREATE_RECYCLER_REQUEST });
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-    const { data } = await fetcher(
+    const data = await fetcher(
       `http://localhost:5000/api/v1/recycler/new`,
       "POST",
       recyclerData
